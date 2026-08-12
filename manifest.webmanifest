@@ -1,0 +1,17 @@
+{
+  "name": "دفترنا — دفتر المصروفات المشترك",
+  "short_name": "دفترنا",
+  "description": "ميزانية مشتركة بين اثنين",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "dir": "rtl",
+  "lang": "ar",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef3ef",
+  "theme_color": "#0e6d5a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
