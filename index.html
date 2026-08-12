@@ -76,6 +76,7 @@ main{max-width:1080px;margin-inline:auto;padding:18px 16px}
 .avatar{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.05rem;flex:none}
 .av-1{background:linear-gradient(135deg,#0e6d5a,#2fbf9a)}
 .av-2{background:linear-gradient(135deg,#c9962e,#e2b457)}
+.av-month{background:linear-gradient(135deg,var(--primary),var(--income));font-size:.95rem}
 .pc-row{display:flex;justify-content:space-between;font-size:.88rem;padding:6px 0;border-bottom:1px dashed var(--line);font-weight:600}
 .pc-row span{color:var(--muted)}
 .pc-row.total{border:0}
@@ -89,7 +90,7 @@ main{max-width:1080px;margin-inline:auto;padding:18px 16px}
 .search-box input{border:0;background:none;padding:0;width:150px;font-size:.85rem}
 .search-box input:focus{outline:none}
 .search-box .ic{width:16px;height:16px;color:var(--muted)}
-.fchip{border:1.5px solid var(--line);background:var(--surface);color:var(--muted);border-radius:99px;padding:7px 14px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.18s}
+.fchip{border:1.5px solid var(--line);background:var(--surface);color:var(--muted);border-radius:99px;padding:7px 14px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.18s;flex:none}
 .fchip:hover{border-color:var(--primary)}
 .fchip.sel{background:var(--primary);border-color:var(--primary);color:#fff}
 .tx-list{list-style:none;display:flex;flex-direction:column;gap:8px}
@@ -159,6 +160,18 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 .steps-list{margin:0 0 12px;padding-inline-start:18px;line-height:2;font-size:.85rem;color:var(--muted);font-weight:600}
 .auto-badge{font-size:.68rem;font-weight:800;color:var(--primary);background:color-mix(in srgb,var(--primary) 12%,transparent);padding:3px 9px;border-radius:99px;margin-inline-start:6px;vertical-align:middle}
 .note-chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.share-list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.share-row{display:flex;align-items:center;gap:10px}
+.share-row.top{align-items:flex-start}
+.share-row.top .icon-btn{margin-top:2px}
+.share-info{flex:1;min-width:0}
+.share-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;font-weight:800;margin-bottom:4px;gap:8px}
+.share-sub{font-size:.72rem;color:var(--muted);font-weight:700;margin-bottom:4px}
+.share-bar{height:8px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.share-bar i{display:block;height:100%;border-radius:99px}
+.share-pct{font-size:.72rem;color:var(--muted);font-weight:700;margin-top:3px;display:block;text-align:left}
+.year-total{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.debt-summary-card{display:flex;flex-direction:column;gap:14px;margin-bottom:14px}
 .debt-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;padding:14px}
 @media(max-width:560px){.debt-summary{grid-template-columns:1fr}}
 .ds-item{display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center}
@@ -426,6 +439,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
       <button class="btn btn-gold" data-action="new-goal"><svg class="ic"><use href="#i-plus"/></svg> هدف جديد</button>
     </div>
     <div class="goal-list" id="goalList"></div>
+    <div id="goalAnalysis"></div>
   </section>
 </main>
 
@@ -478,7 +492,7 @@ const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 
 const pad = n => String(n).padStart(2, '0');
 const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-const AR = '٠١٢٤٥٦٧٨٩', FA = '۰۱۲۳۴۵۶۷۸۹';
+const AR = '٠١٢٣٤٥٦٧٨٩', FA = '۰۱۲٣٤٥٦٧٨٩';
 const toLatin = s => String(s).replace(/[٠-٩۰-۹]/g, c => {
   const a = AR.indexOf(c); if (a > -1) return a;
   const f = FA.indexOf(c); if (f > -1) return f;
@@ -507,6 +521,7 @@ function formatWithCommas(raw) {
 function attachAmountFormat(el) {
   if (!el || el._fmtAttached) return;
   el._fmtAttached = true;
+  if (el.value) el.value = formatWithCommas(el.value);
   el.addEventListener('input', () => {
     const v = formatWithCommas(el.value);
     if (v !== el.value) el.value = v;
@@ -524,6 +539,13 @@ const monthLabel = (key, withYear = false) => {
   return toLatin(new Intl.DateTimeFormat('ar', withYear ? { month:'long', year:'numeric' } : { month:'long' }).format(d));
 };
 const fmtDate = iso => toLatin(new Intl.DateTimeFormat('ar', { day:'numeric', month:'short' }).format(parseISO(iso)));
+
+function fmtCompact(n){
+  n = Math.round(n || 0);
+  if (Math.abs(n) >= 1e6) return fmtNumber(+(n/1e6).toFixed(2)) + ' مليون';
+  if (Math.abs(n) >= 1e4) return fmtNumber(+(n/1e3).toFixed(1)) + ' ألف';
+  return fmtNumber(n);
+}
 
 const categoryById = (type, id) =>
   (type === 'income' ? CONFIG.incomeCategories : CONFIG.expenseCategories)
@@ -575,7 +597,7 @@ const DB = {
   init() { this.data = StorageAdapter.load() || this.defaults(); if (!this.data.people) this.data = this.defaults(); },
   defaults() {
     return { people: [{ id: 1, name: 'أحمد' }, { id: 2, name: 'سارة' }],
-      transactions: [], sources: [], goals: [], debts: [],
+      transactions: [], sources: [], goals: [], debts: [], monthGoals: {},
       settings: { theme: null, currency: CONFIG.currencyDefault, profitPersonId: 1 } };
   },
   save() { clearTimeout(this._t); this._t = setTimeout(() => StorageAdapter.save(this.data), 120); }
@@ -911,14 +933,44 @@ function tugBarHTML(s, small) {
   </div>`;
 }
 
+/* ═══ ملخص الديون: 3 أشرطة (له أخضر / عليه أحمر / الصافي) ═══ */
+function renderDebtsSummary() {
+  const sum = allPersonsSummary();
+  const totalAll = sum.toUs + sum.weOwe;
+  const pctTo  = totalAll > 0 ? (sum.toUs  / totalAll) * 100 : 0;
+  const pctWe  = totalAll > 0 ? (sum.weOwe / totalAll) * 100 : 0;
+  const pctNet = totalAll > 0 ? (Math.abs(sum.net) / totalAll) * 100 : 0;
+  return `<div class="card debt-summary-card">
+    <div class="share-row">
+      <span class="avatar" style="background:var(--income)">🟢</span>
+      <div class="share-info">
+        <div class="share-top"><b>مجموع له (علينا)</b><span class="in">${fmtMoney(sum.toUs)}</span></div>
+        <div class="share-bar"><i style="width:${pctTo.toFixed(2)}%;background:var(--income)"></i></div>
+        <span class="share-pct in">${fmtNumber(+pctTo.toFixed(2))}%</span>
+      </div>
+    </div>
+    <div class="share-row">
+      <span class="avatar" style="background:var(--expense)">🔴</span>
+      <div class="share-info">
+        <div class="share-top"><b>مجموع عليه (لنا)</b><span class="out">${fmtMoney(sum.weOwe)}</span></div>
+        <div class="share-bar"><i style="width:${pctWe.toFixed(2)}%;background:var(--expense)"></i></div>
+        <span class="share-pct out">${fmtNumber(+pctWe.toFixed(2))}%</span>
+      </div>
+    </div>
+    <div class="share-row">
+      <span class="avatar" style="background:var(--gold)">⚖️</span>
+      <div class="share-info">
+        <div class="share-top"><b>الصافي العام</b><span class="${sum.net >= 0 ? 'in' : 'out'}">${fmtSigned(sum.net)}</span></div>
+        <div class="share-bar"><i style="width:${pctNet.toFixed(2)}%;background:${sum.net >= 0 ? 'var(--income)' : 'var(--expense)'}"></i></div>
+        <span class="share-pct ${sum.net >= 0 ? 'in' : 'out'}">${fmtNumber(+pctNet.toFixed(2))}%</span>
+      </div>
+    </div>
+  </div>`;
+}
+
 function renderDebtsList() {
   const debts = state.debts || [];
-  const sum = allPersonsSummary();
-  const summary = `<div class="card debt-summary">
-    <div class="ds-item"><span>🟢 مجموع له (علينا)</span><b class="in">${fmtMoney(sum.toUs)}</b><em>صافي كل الأشخاص</em></div>
-    <div class="ds-item"><span>🔴 مجموع عليه (لنا)</span><b class="out">${fmtMoney(sum.weOwe)}</b><em>صافي كل الأشخاص</em></div>
-    <div class="ds-item"><span>⚖️ الصافي العام</span><b class="${sum.net >= 0 ? 'in' : 'out'}">${fmtSigned(sum.net)}</b><em>له − عليه</em></div>
-  </div>`;
+  const summary = renderDebtsSummary();
   if (!debts.length) {
     return summary + `<div class="card empty-state"><span class="em">💵</span><h3>لا يوجد أشخاص مسجلون بعد</h3>
       <p>ابدأ بإضافة شخص، ثم اضغط عليه لتسجيل الديون.</p></div>`;
@@ -1219,39 +1271,89 @@ function renderGoals() {
     el.innerHTML = `<div class="card empty-state"><span class="em">🎯</span><h3>لا توجد أهداف ادخار</h3>
       <p>لابتوب جديد؟ رحلة؟ حدّدا الهدف وسيساعدكما التطبيق على الوصول إليه.</p>
       <button class="btn btn-gold" data-action="new-goal"><svg class="ic"><use href="#i-plus"/></svg> إنشاء هدف</button></div>`;
-    return;
+  } else {
+    const sorted = [...state.goals].sort((a, b) => a.dueDate.localeCompare(b.dueDate));
+    el.innerHTML = sorted.map(g => {
+      const s = goalStats(g);
+      const p1 = state.people[0], p2 = state.people[1];
+      const dueTxt = parseISO(g.dueDate) < new Date() ? 'انتهى الموعد ⏰'
+        : toLatin(new Intl.DateTimeFormat('ar', { day:'numeric', month:'long', year:'numeric' }).format(parseISO(g.dueDate)));
+      const autoBadge = g.auto ? '<span class="auto-badge">⚡ تلقائي</span>' : '';
+      const lbl1 = g.auto ? `ادخار ${escapeHtml(p1.name)}${p1.id === s.profitPid ? ' (ربح 20%)' : ' (كامل)'}` : `مساهمة ${escapeHtml(p1.name)}`;
+      const lbl2 = g.auto ? `ادخار ${escapeHtml(p2.name)}${p2.id === s.profitPid ? ' (ربح 20%)' : ' (كامل)'}` : `مساهمة ${escapeHtml(p2.name)}`;
+      const autoNote = g.auto ? `<div style="grid-column:1/-1"><span>يُحسب تلقائيًا منذ</span><b>${fmtDate(g.autoStart || g.createdAt || todayISO())}</b></div>` : '';
+      return `<article class="card goal-card">
+        <header><h3>🎯 ${escapeHtml(g.name)}${autoBadge}</h3><span class="goal-due"><svg class="ic" style="width:14px;height:14px"><use href="#i-calendar"/></svg> ${dueTxt}</span></header>
+        <div class="goal-progress"><span class="goal-pct">${fmtNumber(Math.round(s.pct))}%</span>
+          <div class="bar"><i data-w="${s.pct.toFixed(1)}"></i></div></div>
+        <div class="goal-meta">
+          <div><span>تم ادخاره</span><b class="in">${fmtMoney(s.saved)}</b></div>
+          <div><span>الهدف</span><b>${fmtMoney(g.targetAmount)}</b></div>
+          <div><span>${lbl1}</span><b class="${s.per1 >= 0 ? 'in' : 'out'}">${fmtMoney(s.per1)}</b></div>
+          <div><span>${lbl2}</span><b class="${s.per2 >= 0 ? 'in' : 'out'}">${fmtMoney(s.per2)}</b></div>
+          <div><span>المتبقي</span><b class="out">${fmtMoney(s.remaining)}</b></div>
+          <div><span>المطلوب شهريًا</span><b>${fmtMoney(s.requiredMonthly)}</b></div>
+          ${autoNote}
+          <div style="grid-column:1/-1"><span>متوسط وتيرة الادخار</span><b>${fmtMoney(s.pace)} / شهر</b></div>
+        </div>
+        <div class="goal-actions">
+          ${g.auto ? '' : `<button class="btn btn-gold" data-action="add-contrib" data-id="${g.id}"><svg class="ic"><use href="#i-plus"/></svg> إضافة مساهمة</button>`}
+          <button class="btn btn-ghost" data-action="edit-goal" data-id="${g.id}">تعديل</button>
+          <button class="btn btn-ghost" data-action="del-goal" data-id="${g.id}" style="color:var(--expense)">حذف</button>
+        </div></article>`;
+    }).join('');
+    requestAnimationFrame(() => $$('.bar i', el).forEach(b => b.style.width = b.dataset.w + '%'));
   }
-  const sorted = [...state.goals].sort((a, b) => a.dueDate.localeCompare(b.dueDate));
-  el.innerHTML = sorted.map(g => {
-    const s = goalStats(g);
-    const p1 = state.people[0], p2 = state.people[1];
-    const dueTxt = parseISO(g.dueDate) < new Date() ? 'انتهى الموعد ⏰'
-      : toLatin(new Intl.DateTimeFormat('ar', { day:'numeric', month:'long', year:'numeric' }).format(parseISO(g.dueDate)));
-    const autoBadge = g.auto ? '<span class="auto-badge">⚡ تلقائي</span>' : '';
-    const lbl1 = g.auto ? `ادخار ${escapeHtml(p1.name)}${p1.id === s.profitPid ? ' (ربح 20%)' : ' (كامل)'}` : `مساهمة ${escapeHtml(p1.name)}`;
-    const lbl2 = g.auto ? `ادخار ${escapeHtml(p2.name)}${p2.id === s.profitPid ? ' (ربح 20%)' : ' (كامل)'}` : `مساهمة ${escapeHtml(p2.name)}`;
-    const autoNote = g.auto ? `<div style="grid-column:1/-1"><span>يُحسب تلقائيًا منذ</span><b>${fmtDate(g.autoStart || g.createdAt || todayISO())}</b></div>` : '';
-    return `<article class="card goal-card">
-      <header><h3>🎯 ${escapeHtml(g.name)}${autoBadge}</h3><span class="goal-due"><svg class="ic" style="width:14px;height:14px"><use href="#i-calendar"/></svg> ${dueTxt}</span></header>
-      <div class="goal-progress"><span class="goal-pct">${fmtNumber(Math.round(s.pct))}%</span>
-        <div class="bar"><i data-w="${s.pct.toFixed(1)}"></i></div></div>
-      <div class="goal-meta">
-        <div><span>تم ادخاره</span><b class="in">${fmtMoney(s.saved)}</b></div>
-        <div><span>الهدف</span><b>${fmtMoney(g.targetAmount)}</b></div>
-        <div><span>${lbl1}</span><b class="${s.per1 >= 0 ? 'in' : 'out'}">${fmtMoney(s.per1)}</b></div>
-        <div><span>${lbl2}</span><b class="${s.per2 >= 0 ? 'in' : 'out'}">${fmtMoney(s.per2)}</b></div>
-        <div><span>المتبقي</span><b class="out">${fmtMoney(s.remaining)}</b></div>
-        <div><span>المطلوب شهريًا</span><b>${fmtMoney(s.requiredMonthly)}</b></div>
-        ${autoNote}
-        <div style="grid-column:1/-1"><span>متوسط وتيرة الادخار</span><b>${fmtMoney(s.pace)} / شهر</b></div>
+  renderMonthlyGoals();
+}
+
+/* ═══ الأهداف الشهرية 1→12 مثل صفوف الأسماء + إجمالي السنة ═══ */
+function monthSavingsFor(mk) {
+  const profitPid = +state.settings.profitPersonId || 1;
+  let sum = 0;
+  for (const p of state.people) {
+    const t = Stats.totals(Stats.inMonth(Stats.ofPerson(state.transactions, p.id), mk));
+    sum += Math.max(0, p.id === profitPid ? t.net * CONFIG.partnerProfitRate : t.net);
+  }
+  return sum;
+}
+
+function renderMonthlyGoals() {
+  const holder = $('#goalAnalysis');
+  if (!holder) return;
+  const year = new Date().getFullYear();
+  let totalTarget = 0, totalAchieved = 0;
+  const rows = [];
+  for (let m = 0; m < 12; m++) {
+    const mk = `${year}-${pad(m + 1)}`;
+    const target = +state.monthGoals[mk] || 0;
+    const achieved = monthSavingsFor(mk);
+    totalTarget += target; totalAchieved += achieved;
+    const pct = target > 0 ? Math.min(100, (achieved / target) * 100) : (achieved > 0 ? 100 : 0);
+    const done = target > 0 && achieved >= target;
+    rows.push(`<div class="share-row top">
+      <span class="avatar av-month">${fmtNumber(m + 1)}</span>
+      <div class="share-info">
+        <div class="share-top"><b>${monthLabel(mk)} ${done ? '✅' : ''}</b><span class="${achieved > 0 ? 'in' : ''}">${fmtMoney(achieved)}</span></div>
+        <div class="share-sub">الهدف: ${target > 0 ? fmtMoney(target) : 'غير محدد'}</div>
+        <div class="share-bar"><i style="width:${pct.toFixed(2)}%;background:${done ? 'var(--income)' : 'var(--gold)'}"></i></div>
+        <span class="share-pct">${fmtNumber(+pct.toFixed(2))}%</span>
       </div>
-      <div class="goal-actions">
-        ${g.auto ? '' : `<button class="btn btn-gold" data-action="add-contrib" data-id="${g.id}"><svg class="ic"><use href="#i-plus"/></svg> إضافة مساهمة</button>`}
-        <button class="btn btn-ghost" data-action="edit-goal" data-id="${g.id}">تعديل</button>
-        <button class="btn btn-ghost" data-action="del-goal" data-id="${g.id}" style="color:var(--expense)">حذف</button>
-      </div></article>`;
-  }).join('');
-  requestAnimationFrame(() => $$('.bar i', el).forEach(b => b.style.width = b.dataset.w + '%'));
+      <button class="icon-btn sm" data-action="edit-month-goal" data-id="${mk}" aria-label="تعديل هدف الشهر"><svg class="ic"><use href="#i-edit"/></svg></button>
+    </div>`);
+  }
+  const yPct = totalTarget > 0 ? Math.min(100, (totalAchieved / totalTarget) * 100) : (totalAchieved > 0 ? 100 : 0);
+  holder.innerHTML = `<div class="card chart-card" style="margin-top:14px">
+    <h3>الأهداف الشهرية — ${fmtNumber(year)}</h3>
+    <p class="hint" style="margin-bottom:10px">حدّدا هدف كل شهر بزر ✏️ — المحقق يُحسب تلقائيًا (شخص الربح 20% والآخر كاملًا).</p>
+    <div class="share-list">${rows.join('')}</div>
+    <div class="year-total">
+      <div class="share-top"><b>🏁 إجمالي السنة</b><span class="in">${fmtMoney(totalAchieved)}</span></div>
+      <div class="share-sub">إجمالي الأهداف: ${totalTarget > 0 ? fmtMoney(totalTarget) : 'غير محدد'}</div>
+      <div class="share-bar"><i style="width:${yPct.toFixed(2)}%;background:linear-gradient(90deg,var(--gold),var(--primary))"></i></div>
+      <span class="share-pct">${fmtNumber(+yPct.toFixed(2))}%</span>
+    </div>
+  </div>`;
 }
 
 function openGoalEditor(goal) {
@@ -1576,6 +1678,7 @@ function processImportedData(rawText) {
       sources: imported.sources || [],
       goals: imported.goals || [],
       debts: imported.debts || [],
+      monthGoals: imported.monthGoals || {},
       settings: Object.assign({ theme: null, currency: CONFIG.currencyDefault, profitPersonId: 1 }, imported.settings || {})
     };
     confirmDialog(`سيتم استبدال البيانات الحالية بـ <b>${fmtNumber(safeState.transactions.length)} معاملة</b>. هل تريد المتابعة؟`, () => {
@@ -1773,6 +1876,25 @@ function handleAction(action, ds) {
       }); break;
     }
     case 'add-contrib': openContribModal(Repo.find('goals', id)); break;
+    case 'edit-month-goal': {
+      const mk = id;
+      Modal.open(`<div class="modal-head"><h3>هدف شهر ${monthLabel(mk)} — ${fmtNumber(mk.slice(0,4))}</h3>
+        <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
+        <form id="mgForm" class="form-stack">
+          <div class="field"><label>الهدف المطلوب لهذا الشهر</label>
+            <div class="amount-wrap"><input id="mgTarget" inputmode="decimal" value="${(+state.monthGoals[mk] || '')}" placeholder="0">
+            <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
+          <div class="form-actions"><button class="btn btn-gold" type="submit"><svg class="ic"><use href="#i-check"/></svg> حفظ الهدف</button></div>
+        </form>`);
+      attachAmountFormat($('#mgTarget'));
+      $('#mgForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const v = parseAmount($('#mgTarget').value) || 0;
+        state.monthGoals[mk] = v; DB.save();
+        Modal.close(); toast('تم حفظ هدف الشهر ✔'); renderGoals();
+      });
+      break;
+    }
     case 'filter-person': recentFilter = id === 'all' ? 'all' : +id; renderHome(); break;
   }
 }
@@ -1794,6 +1916,26 @@ function setupLongPress() {
   ['pointerup','pointerleave','pointercancel'].forEach(ev =>
     document.addEventListener(ev, () => clearTimeout(lpTimer), { passive: true }));
   document.addEventListener('scroll', () => clearTimeout(lpTimer), { passive: true, capture: true });
+}
+
+function setupBackExit() {
+  try { history.replaceState({ daftarna: 1 }, ''); history.pushState({ daftarna: 2 }, ''); } catch (e) {}
+  let warned = false;
+  window.addEventListener('popstate', () => {
+    if (Modal.root.classList.contains('open')) {
+      Modal.close();
+      try { history.pushState({ daftarna: 1 }, ''); } catch (e) {}
+      return;
+    }
+    if (!warned) {
+      warned = true;
+      toast('اضغط مرة أخرى لتسجيل الخروج', 'info');
+      setTimeout(() => {
+        warned = false;
+        try { history.pushState({ daftarna: 1 }, ''); } catch (e) {}
+      }, 2000);
+    }
+  });
 }
 
 function wireGlobal() {
@@ -1832,12 +1974,14 @@ function init() {
   state = DB.data;
   if (!state.settings.profitPersonId) state.settings.profitPersonId = 1;
   if (!state.debts) state.debts = [];
+  if (!state.monthGoals) state.monthGoals = {};
   normalizeDebts();
   Recurring.generate();
   if (window.Chart) Chart.defaults.font.family = "'Tajawal', sans-serif";
   $('#monthPill').textContent = monthLabel(currentMonthKey(), true);
   applyTheme(state.settings.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'), true);
   wireGlobal();
+  setupBackExit();
   showView('home');
 }
 
