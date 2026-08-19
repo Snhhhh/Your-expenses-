@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> �   </title>
+<title>دفترنا — دفتر المصروفات المشترك</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0e6d5a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="">
+<meta name="apple-mobile-web-app-title" content="دفترنا">
 <link rel="apple-touch-icon" href="icon.svg">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📒</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -242,7 +242,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 .entry-type-seg button{border:0;background:transparent;padding:10px;border-radius:9px;font-weight:800;color:var(--muted);cursor:pointer;transition:.18s;font-size:.85rem}
 .entry-type-seg button.on-income{background:var(--income);color:#fff}
 .entry-type-seg button.on-expense{background:var(--expense);color:#fff}
-/*   */
+/* ✅ الميزانية */
 .budget-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .budget-card{padding:14px;border-inline-start-width:5px}
 .bc-head{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:.9rem;margin-bottom:8px;gap:8px}
@@ -378,12 +378,12 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 <header class="topbar">
   <div class="brand">
     <span class="brand-badge"><svg class="ic"><use href="#i-wallet"/></svg></span>
-    <div><h1></h1><span class="brand-sub">   </span></div>
+    <div><h1>دفترنا</h1><span class="brand-sub">ميزانية مشتركة بين اثنين</span></div>
   </div>
   <div class="topbar-actions">
     <span class="month-pill" id="monthPill"></span>
-    <button class="icon-btn" id="themeToggle" aria-label="  "><svg class="ic"><use href="#i-moon" id="themeIcon"/></svg></button>
-    <button class="icon-btn" id="settingsBtn" aria-label=""><svg class="ic"><use href="#i-gear"/></svg></button>
+    <button class="icon-btn" id="themeToggle" aria-label="تبديل الوضع الليلي"><svg class="ic"><use href="#i-moon" id="themeIcon"/></svg></button>
+    <button class="icon-btn" id="settingsBtn" aria-label="الإعدادات"><svg class="ic"><use href="#i-gear"/></svg></button>
   </div>
 </header>
 
@@ -392,132 +392,132 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
     <div id="welcomeSlot"></div>
     <div id="heroWrap">
       <div class="hero-card">
-        <div class="hero-top"><span class="hero-label"> </span><svg class="ic"><use href="#i-wallet"/></svg></div>
+        <div class="hero-top"><span class="hero-label">الرصيد المشترك</span><svg class="ic"><use href="#i-wallet"/></svg></div>
         <div class="hero-amount" id="heroBalance">0</div>
         <div class="hero-meta">
-          <span class="pill"><span class="dot g"></span>  : <b id="heroIncome">0</b></span>
-          <span class="pill"><span class="dot r"></span>  : <b id="heroExpense">0</b></span>
+          <span class="pill"><span class="dot g"></span> إجمالي الدخل: <b id="heroIncome">0</b></span>
+          <span class="pill"><span class="dot r"></span> إجمالي المصروف: <b id="heroExpense">0</b></span>
         </div>
         <canvas id="sparkline" height="48"></canvas>
       </div>
     </div>
-    <h2 class="view-title"> </h2>
+    <h2 class="view-title">ملخصات زمنية</h2>
     <div class="period-grid" id="periodGrid"></div>
-    <h2 class="view-title">  �  </h2>
+    <h2 class="view-title">مساهمة الشريكين — هذا الشهر</h2>
     <div class="person-grid" id="personGrid"></div>
     <div class="recent-head">
-      <h2 class="view-title" style="margin:26px 0 0"> </h2>
+      <h2 class="view-title" style="margin:26px 0 0">آخر الحركات</h2>
       <div class="recent-tools">
         <div class="search-box"><svg class="ic"><use href="#i-search"/></svg>
-          <input id="recentSearchInput" placeholder="  �" aria-label=""></div>
-        <button class="fchip" data-action="open-adv">  </button>
+          <input id="recentSearchInput" placeholder="ابحث في الحركات…" aria-label="بحث"></div>
+        <button class="fchip" data-action="open-adv">🔎 بحث متقدم</button>
       </div>
     </div>
     <div id="selectBar"></div>
     <div id="recentFilters" style="display:flex;gap:7px;margin:12px 0;flex-wrap:wrap"></div>
     <ul class="tx-list" id="recentList"></ul>
     <div style="text-align:center;margin-top:12px">
-      <button class="btn btn-ghost" data-action="open-adv-all">   </button>
+      <button class="btn btn-ghost" data-action="open-adv-all">📋 عرض كل الحركات</button>
     </div>
   </section>
 
   <section id="view-add" class="view">
-    <h2 class="view-title">  </h2>
+    <h2 class="view-title">إضافة معاملة جديدة</h2>
     <form id="addForm" class="card form-stack" autocomplete="off">
-      <div class="field"><label></label><div class="person-pick" id="addPersonPick"></div></div>
-      <div class="field"><label></label>
+      <div class="field"><label>باسم</label><div class="person-pick" id="addPersonPick"></div></div>
+      <div class="field"><label>النوع</label>
         <div class="seg" id="addTypeSeg">
-          <button type="button" data-t="expense"> </button>
-          <button type="button" data-t="income"> </button>
+          <button type="button" data-t="expense">مصروف ⬇</button>
+          <button type="button" data-t="income">دخل ⬆</button>
         </div></div>
-      <div class="field"><label></label>
+      <div class="field"><label>المبلغ</label>
         <div class="amount-wrap"><input id="addAmount" inputmode="decimal" placeholder="0" required><span class="currency" id="addCurrency"></span></div></div>
-      <div class="field"><label style="display:flex;align-items:center;justify-content:space-between">
-        <button type="button" class="fchip" data-action="manage-cats">  </button></label>
+      <div class="field"><label style="display:flex;align-items:center;justify-content:space-between">الفئة
+        <button type="button" class="fchip" data-action="manage-cats">⚙️ إدارة الفئات</button></label>
         <div class="cat-grid" id="addCatGrid"></div></div>
       <div class="field-row">
-        <div class="field"><label> ()</label><input id="addNote" maxlength="80" placeholder=":   "></div>
-        <div class="field"><label> ()</label><input type="date" id="addDate"></div>
+        <div class="field"><label>ملاحظة (اختياري)</label><input id="addNote" maxlength="80" placeholder="مثال: غداء خارج البيت"></div>
+        <div class="field"><label>التاريخ (اختياري)</label><input type="date" id="addDate"></div>
       </div>
-      <button class="btn btn-primary btn-lg" type="submit"><svg class="ic"><use href="#i-plus"/></svg>  </button>
+      <button class="btn btn-primary btn-lg" type="submit"><svg class="ic"><use href="#i-plus"/></svg> إضافة المعاملة</button>
     </form>
   </section>
 
   <section id="view-debts" class="view">
     <div class="view-head">
-      <h2 class="view-title"> </h2>
-      <button class="btn btn-primary" data-action="new-debt-person"><svg class="ic"><use href="#i-plus"/></svg>  </button>
+      <h2 class="view-title">سجل الديون</h2>
+      <button class="btn btn-primary" data-action="new-debt-person"><svg class="ic"><use href="#i-plus"/></svg> شخص جديد</button>
     </div>
     <div id="debtRoot"></div>
   </section>
 
   <section id="view-budget" class="view">
-    <h2 class="view-title">   (60/20/20)</h2>
-    <p class="hint">   .       � / � �           .</p>
+    <h2 class="view-title">💰 الميزانية الذكية (60/20/20)</h2>
+    <p class="hint">اكتب دخلًا وسيُوزَّع فورًا. سجّل صرفك من كل فئة ويتتبّع «صرفت / الباقي» — إذا امتلأ حد الفئة انتهت ميزانيتها لهذا الشهر وتتجدد الشهر التالي.</p>
     <div class="card" style="margin-bottom:14px">
-      <div class="field"><label>  </label>
+      <div class="field"><label>الدخل المراد توزيعه</label>
         <div class="amount-wrap"><input id="bIncome" inputmode="decimal" placeholder="0"><span class="currency" id="bCurrency"></span></div>
       </div>
     </div>
     <div class="card" style="margin-bottom:14px">
       <div style="position:relative;height:210px"><canvas id="budgetDonut"></canvas>
-        <div class="donut-center"><b id="donutTotal">100%</b><span> </span></div>
+        <div class="donut-center"><b id="donutTotal">100%</b><span>مجموع النسب</span></div>
       </div>
     </div>
     <div id="budgetTools" class="budget-tools"></div>
     <div id="budgetCards" style="display:grid;gap:12px;margin-bottom:14px"></div>
     <div id="budgetTxList" class="card" style="margin-bottom:14px"></div>
     <div class="card">
-      <h3 style="font-size:.9rem;font-weight:800;margin-bottom:10px">     ( �  )</h3>
+      <h3 style="font-size:.9rem;font-weight:800;margin-bottom:10px">📊 المصروف الفعلي مقابل المخطّط (يوميًا — هذا الشهر)</h3>
       <div class="chart-box"><canvas id="budgetDaily"></canvas></div>
     </div>
   </section>
 
   <section id="view-recurring" class="view">
     <div class="view-head">
-      <h2 class="view-title">  ()</h2>
-      <button class="btn btn-primary" data-action="new-source"><svg class="ic"><use href="#i-plus"/></svg>  </button>
+      <h2 class="view-title">المصادر الثابتة (الدورية)</h2>
+      <button class="btn btn-primary" data-action="new-source"><svg class="ic"><use href="#i-plus"/></svg> مصدر جديد</button>
     </div>
-    <p class="hint">  1 15                (  ).</p>
+    <p class="hint">الراتب يوم 1 و15؟ الإيجار أول كل شهر؟ أضفها هنا مرة واحدة، وسيولّد التطبيق معاملاتها تلقائيًا عن الأشهر السبعة (الحالي والستة الماضية).</p>
     <div class="source-list" id="sourceList"></div>
   </section>
 
   <section id="view-analytics" class="view">
-    <h2 class="view-title" id="analyticsTitle"> </h2>
+    <h2 class="view-title" id="analyticsTitle">التحليلات والإحصائيات</h2>
     <div class="kpi-grid" id="kpiGrid"></div>
     <div class="charts-grid">
-      <div class="card chart-card wide reveal"><h3>   �  6 </h3><div class="chart-box"><canvas id="chartTrend"></canvas></div></div>
-      <div class="card chart-card reveal"><h3>   �  6 </h3><div class="chart-box"><canvas id="chartPersonIncome"></canvas></div></div>
-      <div class="card chart-card reveal"><h3>   </h3><div class="chart-box"><canvas id="chartExpenseCats"></canvas></div></div>
-      <div class="card chart-card reveal"><h3>   </h3><div class="chart-box"><canvas id="chartIncomeCats"></canvas></div></div>
-      <div class="card chart-card wide reveal"><h3>    ( )</h3><div class="chart-box"><canvas id="chartDaily"></canvas></div></div>
-      <div class="card chart-card reveal"><h3>   %</h3><div class="chart-box"><canvas id="chartSavings"></canvas></div></div>
+      <div class="card chart-card wide reveal"><h3>الدخل مقابل المصروف — آخر 6 أشهر</h3><div class="chart-box"><canvas id="chartTrend"></canvas></div></div>
+      <div class="card chart-card reveal"><h3>دخل كل فرد — آخر 6 أشهر</h3><div class="chart-box"><canvas id="chartPersonIncome"></canvas></div></div>
+      <div class="card chart-card reveal"><h3>توزيع المصروفات حسب الفئة</h3><div class="chart-box"><canvas id="chartExpenseCats"></canvas></div></div>
+      <div class="card chart-card reveal"><h3>توزيع الدخل حسب المصدر</h3><div class="chart-box"><canvas id="chartIncomeCats"></canvas></div></div>
+      <div class="card chart-card wide reveal"><h3>الدخل والمصروف يومًا بيوم (هذا الشهر)</h3><div class="chart-box"><canvas id="chartDaily"></canvas></div></div>
+      <div class="card chart-card reveal"><h3>معدل الادخار الشهري %</h3><div class="chart-box"><canvas id="chartSavings"></canvas></div></div>
     </div>
-    <h2 class="view-title"> </h2>
+    <h2 class="view-title">تحليل العادات</h2>
     <div class="habits-grid" id="habitsGrid"></div>
-    <h2 class="view-title"> </h2>
+    <h2 class="view-title">مقترحات ذكية</h2>
     <ul class="tips-list" id="tipsList"></ul>
   </section>
 
   <section id="view-goals" class="view">
     <div class="view-head">
-      <h2 class="view-title"> </h2>
-      <button class="btn btn-gold" data-action="new-goal"><svg class="ic"><use href="#i-plus"/></svg>  </button>
+      <h2 class="view-title">خطط الادخار</h2>
+      <button class="btn btn-gold" data-action="new-goal"><svg class="ic"><use href="#i-plus"/></svg> هدف جديد</button>
     </div>
     <div class="goal-list" id="goalList"></div>
     <div id="goalAnalysis"></div>
   </section>
 </main>
 
-<button class="fab" id="fab" aria-label=" "><svg class="ic"><use href="#i-plus"/></svg></button>
-<nav class="bottom-nav" aria-label=" ">
-  <button data-view="home" class="active"><svg class="ic"><use href="#i-home"/></svg></button>
-  <button data-view="add"><svg class="ic"><use href="#i-plus"/></svg></button>
-  <button data-view="debts"><svg class="ic"><use href="#i-cash"/></svg></button>
-  <button data-view="budget"><svg class="ic"><use href="#i-pie"/></svg></button>
-  <button data-view="recurring"><svg class="ic"><use href="#i-repeat"/></svg></button>
-  <button data-view="analytics"><svg class="ic"><use href="#i-chart"/></svg></button>
-  <button data-view="goals"><svg class="ic"><use href="#i-target"/></svg></button>
+<button class="fab" id="fab" aria-label="إضافة معاملة"><svg class="ic"><use href="#i-plus"/></svg></button>
+<nav class="bottom-nav" aria-label="التنقل الرئيسي">
+  <button data-view="home" class="active"><svg class="ic"><use href="#i-home"/></svg>الرئيسية</button>
+  <button data-view="add"><svg class="ic"><use href="#i-plus"/></svg>إضافة</button>
+  <button data-view="debts"><svg class="ic"><use href="#i-cash"/></svg>الديون</button>
+  <button data-view="budget"><svg class="ic"><use href="#i-pie"/></svg>الميزانية</button>
+  <button data-view="recurring"><svg class="ic"><use href="#i-repeat"/></svg>الثابتة</button>
+  <button data-view="analytics"><svg class="ic"><use href="#i-chart"/></svg>التحليلات</button>
+  <button data-view="goals"><svg class="ic"><use href="#i-target"/></svg>الأهداف</button>
 </nav>
 
 <div class="toast-root" id="toastRoot"></div>
@@ -532,31 +532,31 @@ const CONFIG = {
   monthsWindow: 6,
   partnerProfitRate: 0.20,
   recentLimit: 10,
-  currencyDefault: '.',
+  currencyDefault: 'ر.س',
   expenseCategories: [
-    { id:'food', label:'', icon:'', color:'#f59e42' },
-    { id:'transport', label:'', icon:'', color:'#4aa3c0' },
-    { id:'housing', label:'', icon:'', color:'#8a67c9' },
-    { id:'bills', label:'', icon:'', color:'#3aa793' },
-    { id:'health', label:'', icon:'', color:'#e2557b' },
-    { id:'education', label:'', icon:'', color:'#c5ae4a' },
-    { id:'fun', label:'', icon:'', color:'#e2708f' },
-    { id:'shopping', label:'', icon:'', color:'#5f8fd4' },
-    { id:'other', label:'', icon:'', color:'#93a09b' }
+    { id:'food', label:'طعام', icon:'🍽️', color:'#f59e42' },
+    { id:'transport', label:'مواصلات', icon:'🚌', color:'#4aa3c0' },
+    { id:'housing', label:'سكن', icon:'🏠', color:'#8a67c9' },
+    { id:'bills', label:'فواتير', icon:'🧾', color:'#3aa793' },
+    { id:'health', label:'صحة', icon:'💊', color:'#e2557b' },
+    { id:'education', label:'تعليم', icon:'📚', color:'#c5ae4a' },
+    { id:'fun', label:'ترفيه', icon:'🎮', color:'#e2708f' },
+    { id:'shopping', label:'تسوق', icon:'🛍️', color:'#5f8fd4' },
+    { id:'other', label:'أخرى', icon:'📦', color:'#93a09b' }
   ],
   incomeCategories: [
-    { id:'salary', label:'', icon:'', color:'#2f9d74' },
-    { id:'freelance', label:' ', icon:'', color:'#2b8fa3' },
-    { id:'gift', label:'', icon:'', color:'#d4698f' },
-    { id:'invest', label:'', icon:'', color:'#c9962e' },
-    { id:'other', label:'', icon:'', color:'#93a09b' }
+    { id:'salary', label:'رصيد', icon:'💼', color:'#2f9d74' },
+    { id:'freelance', label:' شحن', icon:'💻', color:'#2b8fa3' },
+    { id:'gift', label:'هدية', icon:'🎁', color:'#d4698f' },
+    { id:'invest', label:'استثمار', icon:'📈', color:'#c9962e' },
+    { id:'other', label:'أخرى', icon:'✨', color:'#93a09b' }
   ]
 };
 
 const BUDGET_CATS = [
-  { key:'save',    label:' / ', icon:'', color:'#2f9d74' },
-  { key:'expense', label:'',           icon:'', color:'#e2708f' },
-  { key:'fun',     label:'',           icon:'', color:'#e2b457' }
+  { key:'save',    label:'ادخار / استثمار', icon:'💰', color:'#2f9d74' },
+  { key:'expense', label:'مصروف',           icon:'🧾', color:'#e2708f' },
+  { key:'fun',     label:'ترفيه',           icon:'🎮', color:'#e2b457' }
 ];
 const BUDGET_DEFAULT = { income: 0, save: 60, expense: 20, fun: 20, locked: true, tx: [] };
 
@@ -566,8 +566,8 @@ const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 
 const pad = n => String(n).padStart(2, '0');
 const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-const AR = '', FA = '';
-const toLatin = s => String(s).replace(/[--]/g, c => {
+const AR = '٠١٢٣٤٥٦٧٨٩', FA = '۰۱۲٣٤٥٦٧٨٩';
+const toLatin = s => String(s).replace(/[٠-٩۰-۹]/g, c => {
   const a = AR.indexOf(c); if (a > -1) return a;
   const f = FA.indexOf(c); if (f > -1) return f;
   return c;
@@ -577,13 +577,13 @@ const nf2 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
 const fmtNumber = n => toLatin((Number.isInteger(+n) ? nf0 : nf2).format(n || 0));
 
 function parseAmount(v) {
-  const s = toLatin(String(v ?? '')).replace(/[,\s]/g, '').replace(//g, '.');
+  const s = toLatin(String(v ?? '')).replace(/[٬,\s]/g, '').replace(/٫/g, '.');
   const n = parseFloat(s);
   return Number.isFinite(n) ? n : NaN;
 }
 
 function formatWithCommas(raw) {
-  let s = toLatin(String(raw ?? '')).replace(/[,\s]/g, '');
+  let s = toLatin(String(raw ?? '')).replace(/[٬,\s]/g, '');
   s = s.replace(/[^\d.]/g, '');
   const parts = s.split('.');
   const int = (parts[0] || '').replace(/\D/g, '');
@@ -641,10 +641,10 @@ function getCats(type){
 }
 function categoryById(type,id){
   const list = getCats(type);
-  return list.find(c=>c.id===id) || list.find(c=>c.id==='other') || {id:'other',label:'',icon:'',color:'#93a09b'};
+  return list.find(c=>c.id===id) || list.find(c=>c.id==='other') || {id:'other',label:'أخرى',icon:'📦',color:'#93a09b'};
 }
 
-const personName = id => (state.people.find(p => p.id === +id) || {}).name || '';
+const personName = id => (state.people.find(p => p.id === +id) || {}).name || '؟';
 const fmtMoney   = n => `${fmtNumber(Math.round((+n || 0) * 100) / 100)} ${state.settings.currency}`;
 const fmtSigned  = n => `${n < 0 ? '-' : '+'} ${fmtMoney(Math.abs(n))}`;
 
@@ -667,7 +667,7 @@ function migrateV1toV2(old) {
   const newDebts = [];
   for (const d of old.debts) {
     const entries = [];
-    if (d.total > 0) entries.push({ id: uid(), kind: d.type === 'we_owe' ? 'we_owe' : 'to_us', amount: d.total, date: d.createdAt || todayISO(), note: d.note || ' ' });
+    if (d.total > 0) entries.push({ id: uid(), kind: d.type === 'we_owe' ? 'we_owe' : 'to_us', amount: d.total, date: d.createdAt || todayISO(), note: d.note || 'أصل الدين' });
     for (const a of (d.additions || [])) entries.push({ id: a.id || uid(), kind: d.type === 'we_owe' ? 'we_owe' : 'to_us', amount: a.amount, date: a.date, note: a.note });
     for (const p of (d.payments || [])) entries.push({ id: p.id || uid(), kind: d.type === 'we_owe' ? 'pay_we_owe' : 'pay_to_us', amount: p.amount, date: p.date, note: p.note });
     newDebts.push({ id: d.id || uid(), name: d.name, createdAt: d.createdAt || todayISO(), entries });
@@ -689,7 +689,7 @@ const DB = {
   data: null, _t: null,
   init() { this.data = StorageAdapter.load() || this.defaults(); if (!this.data.people) this.data = this.defaults(); },
   defaults() {
-    return { people: [{ id: 1, name: '' }, { id: 2, name: '' }],
+    return { people: [{ id: 1, name: 'أحمد' }, { id: 2, name: 'سارة' }],
       transactions: [], sources: [], goals: [], debts: [], monthGoals: {},
       budget: { ...BUDGET_DEFAULT, tx: [] },
       categories: { expense: CONFIG.expenseCategories.map(c=>({...c})), income: CONFIG.incomeCategories.map(c=>({...c})) },
@@ -771,10 +771,10 @@ const Modal = {
 function confirmDialog(message, onOk, iconId) {
   Modal.open(`<div class="confirm-box">
     <span class="big-ic"><svg class="ic" style="width:26px;height:26px"><use href="#${iconId || 'i-trash'}"/></svg></span>
-    <h3 style="font-family:'Markazi Text';font-size:1.4rem"></h3>
+    <h3 style="font-family:'Markazi Text';font-size:1.4rem">تأكيد</h3>
     <p>${message}</p>
-    <div class="form-actions"><button class="btn btn-ghost" data-close></button>
-    <button class="btn btn-danger" id="confirmOk"></button></div></div>`);
+    <div class="form-actions"><button class="btn btn-ghost" data-close>إلغاء</button>
+    <button class="btn btn-danger" id="confirmOk">تأكيد</button></div></div>`);
   $('#confirmOk').addEventListener('click', () => { onOk(); Modal.close(); });
 }
 
@@ -839,21 +839,21 @@ function drawSparkline(cv, vals) {
 function periodCard(title, t) {
   return `<div class="card period-card"><h3>${title}</h3>
     <div class="pc-net ${t.net >= 0 ? 'in' : 'out'}">${fmtSigned(t.net)}</div>
-    <div class="pc-mini"><span class="dot in"></span>  ${fmtMoney(t.income)}</div>
-    <div class="pc-mini"><span class="dot out"></span>  ${fmtMoney(t.expense)}</div></div>`;
+    <div class="pc-mini"><span class="dot in"></span> دخل ${fmtMoney(t.income)}</div>
+    <div class="pc-mini"><span class="dot out"></span> مصروف ${fmtMoney(t.expense)}</div></div>`;
 }
 
 function personCard(p, monthTxs) {
   const t = Stats.totals(monthTxs);
   const profitPid = getProfitPid();
   const profitLine = (profitPid !== 0 && p.id === profitPid) ? `<div class="profit-line"><svg class="ic"><use href="#i-spark"/></svg>
-      <span>  ${escapeHtml(p.name)} (20%)</span><b>${fmtSigned(t.net * CONFIG.partnerProfitRate)}</b></div>` : '';
+      <span>الربح المتوقع لـ${escapeHtml(p.name)} (20%)</span><b>${fmtSigned(t.net * CONFIG.partnerProfitRate)}</b></div>` : '';
   return `<article class="card person-card">
-    <header class="pc-head"><span class="avatar av-${p.id}">${escapeHtml((p.name || '')[0])}</span>
-      <div><h3>${escapeHtml(p.name)}</h3><span> ${monthLabel(currentMonthKey())}</span></div></header>
-    <div class="pc-row"><span></span><b class="in">${fmtMoney(t.income)}</b></div>
-    <div class="pc-row"><span></span><b class="out">${fmtMoney(t.expense)}</b></div>
-    <div class="pc-row total"><span></span><b class="${t.net >= 0 ? 'in' : 'out'}">${fmtSigned(t.net)}</b></div>
+    <header class="pc-head"><span class="avatar av-${p.id}">${escapeHtml((p.name || '؟')[0])}</span>
+      <div><h3>${escapeHtml(p.name)}</h3><span>مساهمة ${monthLabel(currentMonthKey())}</span></div></header>
+    <div class="pc-row"><span>الدخل</span><b class="in">${fmtMoney(t.income)}</b></div>
+    <div class="pc-row"><span>المصروف</span><b class="out">${fmtMoney(t.expense)}</b></div>
+    <div class="pc-row total"><span>الصافي</span><b class="${t.net >= 0 ? 'in' : 'out'}">${fmtSigned(t.net)}</b></div>
     ${profitLine}
   </article>`;
 }
@@ -861,17 +861,17 @@ function personCard(p, monthTxs) {
 function txItemHTML(t, i) {
   const cat = categoryById(t.type, t.category);
   const sel = selectMode && selectedTx.has(t.id);
-  const check = selectMode ? `<span class="tx-check">${sel ? '' : ''}</span>` : '';
+  const check = selectMode ? `<span class="tx-check">${sel ? '✓' : ''}</span>` : '';
   const actions = selectMode ? '' : (t.sourceId ? '' : `<span class="tx-actions">
-        <button class="icon-btn sm" data-action="edit-tx" data-id="${t.id}" aria-label=""><svg class="ic"><use href="#i-edit"/></svg></button>
-        <button class="icon-btn sm danger" data-action="del-tx" data-id="${t.id}" aria-label=""><svg class="ic"><use href="#i-trash"/></svg></button></span>`);
+        <button class="icon-btn sm" data-action="edit-tx" data-id="${t.id}" aria-label="تعديل"><svg class="ic"><use href="#i-edit"/></svg></button>
+        <button class="icon-btn sm danger" data-action="del-tx" data-id="${t.id}" aria-label="حذف"><svg class="ic"><use href="#i-trash"/></svg></button></span>`);
   return `<li class="tx-item ${selectMode ? 'selectable' : ''} ${sel ? 'selected' : ''}" data-id="${t.id}" style="animation-delay:${i * 45}ms">
     ${check}
     <span class="tx-icon" style="background:${cat.color}26">${cat.icon}</span>
     <div class="tx-info">
-      <strong>${cat.label}${t.sourceId ? ' <em class="auto" title="    "></em>' : ''}</strong>
-      <span>${escapeHtml(personName(t.personId))}${t.note ? ' � ' + escapeHtml(t.note) : ''}</span>
-      <time>${fmtDate(t.date)}${t.time ? ' � ' + t.time : ''}</time></div>
+      <strong>${cat.label}${t.sourceId ? ' <em class="auto" title="مولّدة تلقائيًا من مصدر ثابت">⟳</em>' : ''}</strong>
+      <span>${escapeHtml(personName(t.personId))}${t.note ? ' • ' + escapeHtml(t.note) : ''}</span>
+      <time>${fmtDate(t.date)}${t.time ? ' • ' + t.time : ''}</time></div>
     <div class="tx-side"><b class="${t.type === 'income' ? 'in' : 'out'}">${t.type === 'income' ? '+' : '-'} ${fmtMoney(t.amount)}</b>
       ${actions}</div></li>`;
 }
@@ -882,10 +882,10 @@ function renderSelectBar() {
   if (!selectMode) { bar.style.display = 'none'; bar.innerHTML = ''; return; }
   bar.style.display = 'block';
   bar.innerHTML = `<div class="card select-bar">
-     <b>   ${fmtNumber(selectedTx.size)}</b>
+     <b>✔ تم تحديد ${fmtNumber(selectedTx.size)}</b>
      <span style="display:flex;gap:6px">
-       <button class="btn btn-danger" data-action="delete-selected" style="padding:8px 12px;font-size:.8rem"> </button>
-       <button class="btn btn-ghost" data-action="cancel-select" style="padding:8px 12px;font-size:.8rem"></button>
+       <button class="btn btn-danger" data-action="delete-selected" style="padding:8px 12px;font-size:.8rem">حذف المحدد</button>
+       <button class="btn btn-ghost" data-action="cancel-select" style="padding:8px 12px;font-size:.8rem">إلغاء</button>
      </span></div>`;
 }
 
@@ -902,7 +902,7 @@ function renderRecent() {
   const el = $('#recentList');
   el.innerHTML = list.length
     ? list.slice(0, CONFIG.recentLimit).map(txItemHTML).join('')
-    : `<div class="empty-state"><span class="em"></span><h3>   </h3><p>    .</p></div>`;
+    : `<div class="empty-state"><span class="em">🔎</span><h3>لا توجد حركات مطابقة</h3><p>جرّب تعديل البحث أو التصفية.</p></div>`;
   renderSelectBar();
 }
 
@@ -910,10 +910,10 @@ function renderHome() {
   const txs = state.transactions;
   const empty = !txs.length && !state.sources.length;
   $('#welcomeSlot').innerHTML = empty ? `<div class="card empty-state" style="margin-bottom:16px">
-      <span class="em"></span><h3>   </h3>
-      <p>        .</p>
-      <button class="btn btn-primary" data-action="go-add"><svg class="ic"><use href="#i-plus"/></svg>   </button>
-      <button class="btn btn-ghost" data-action="seed-demo"><svg class="ic"><use href="#i-spark"/></svg>   </button>
+      <span class="em">👋</span><h3>أهلًا بكما في دفترنا</h3>
+      <p>سجّلا أول معاملة لكما، أو استكشفا التطبيق ببيانات جاهزة.</p>
+      <button class="btn btn-primary" data-action="go-add"><svg class="ic"><use href="#i-plus"/></svg> أضف أول معاملة</button>
+      <button class="btn btn-ghost" data-action="seed-demo"><svg class="ic"><use href="#i-spark"/></svg> تعبئة بيانات تجريبية</button>
     </div>` : '';
   $('#heroWrap').style.display = empty ? 'none' : '';
   const all = Stats.totals(txs);
@@ -923,19 +923,19 @@ function renderHome() {
   drawSparkline($('#sparkline'), netLastDays(14));
   const today = todayISO(), mk = monthKeyOf(today), yk = today.slice(0, 4);
   $('#periodGrid').innerHTML = [
-    periodCard('', Stats.totals(txs.filter(t => t.date === today))),
-    periodCard(' ', Stats.totals(Stats.inMonth(txs, mk))),
-    periodCard(' ', Stats.totals(txs.filter(t => t.date.startsWith(yk))))
+    periodCard('اليوم', Stats.totals(txs.filter(t => t.date === today))),
+    periodCard('هذا الشهر', Stats.totals(Stats.inMonth(txs, mk))),
+    periodCard('هذه السنة', Stats.totals(txs.filter(t => t.date.startsWith(yk))))
   ].join('');
   $('#personGrid').innerHTML = state.people
     .map(p => personCard(p, Stats.inMonth(Stats.ofPerson(txs, p.id), mk))).join('');
   $('#recentFilters').innerHTML =
-    `<button class="fchip ${recentFilter === 'all' ? 'sel' : ''}" data-action="filter-person" data-id="all"></button>` +
+    `<button class="fchip ${recentFilter === 'all' ? 'sel' : ''}" data-action="filter-person" data-id="all">الكل</button>` +
     state.people.map(p => `<button class="fchip ${recentFilter == p.id ? 'sel' : ''}" data-action="filter-person" data-id="${p.id}">${escapeHtml(p.name)}</button>`).join('');
   renderRecent();
 }
 
-/*    ()  */
+/* ═══ الميزانية الذكية (مغلفات) ═══ */
 function getBudget() {
   if (!state.budget) state.budget = { ...BUDGET_DEFAULT, tx: [] };
   if (!Array.isArray(state.budget.tx)) state.budget.tx = [];
@@ -948,19 +948,19 @@ function budgetSpent(b, key, mk) {
   return (b.tx || []).filter(t => t.cat === key && (t.date || '').startsWith(mk)).reduce((a, t) => a + (+t.amount || 0), 0);
 }
 
-/*     � �  4  */
+/* ✅ سجل الصرف بشكل «آخر الحركات» مع 4 فلاتر */
 function budgetTxItemHTML(t, i) {
   const c = BUDGET_CATS.find(x => x.key === t.cat) || BUDGET_CATS[0];
   return `<li class="tx-item" style="animation-delay:${i * 40}ms">
     <span class="tx-icon" style="background:${c.color}26">${c.icon}</span>
     <div class="tx-info">
       <strong>${c.label}</strong>
-      <span>${t.note ? escapeHtml(t.note) : '  ' + c.label}</span>
+      <span>${t.note ? escapeHtml(t.note) : 'صرف من ' + c.label}</span>
       <time>${fmtDate(t.date)}</time></div>
     <div class="tx-side"><b class="out">- ${fmtMoney(t.amount)}</b>
       <span class="tx-actions">
-        <button class="icon-btn sm" data-action="edit-budget-tx" data-id="${t.id}" aria-label=""><svg class="ic"><use href="#i-edit"/></svg></button>
-        <button class="icon-btn sm danger" data-action="del-budget-tx" data-id="${t.id}" aria-label=""><svg class="ic"><use href="#i-trash"/></svg></button>
+        <button class="icon-btn sm" data-action="edit-budget-tx" data-id="${t.id}" aria-label="تعديل"><svg class="ic"><use href="#i-edit"/></svg></button>
+        <button class="icon-btn sm danger" data-action="del-budget-tx" data-id="${t.id}" aria-label="حذف"><svg class="ic"><use href="#i-trash"/></svg></button>
       </span></div></li>`;
 }
 
@@ -970,14 +970,14 @@ function renderBudgetTxList() {
   let list = (b.tx || []).filter(t => (t.date || '').startsWith(mk));
   if (budgetFilter !== 'all') list = list.filter(t => t.cat === budgetFilter);
   list.sort((a, b2) => (b2.date || '').localeCompare(a.date || ''));
-  const chips = `<button class="fchip ${budgetFilter === 'all' ? 'sel' : ''}" data-action="budget-filter" data-id="all"></button>` +
+  const chips = `<button class="fchip ${budgetFilter === 'all' ? 'sel' : ''}" data-action="budget-filter" data-id="all">الكل</button>` +
     BUDGET_CATS.map(c => `<button class="fchip ${budgetFilter === c.key ? 'sel' : ''}" data-action="budget-filter" data-id="${c.key}">${c.icon} ${c.label}</button>`).join('');
   $('#budgetTxList').innerHTML =
-    `<div class="dh-title">    </div>
+    `<div class="dh-title">🧾 سجل صرف هذا الشهر</div>
      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px">${chips}</div>` +
     (list.length
       ? `<ul class="tx-list">${list.map(budgetTxItemHTML).join('')}</ul>`
-      : `<div class="empty-state" style="padding:20px"><span class="em"></span><p>       .</p></div>`);
+      : `<div class="empty-state" style="padding:20px"><span class="em">🧾</span><p>لا صرف مسجل في هذا التصنيف هذا الشهر.</p></div>`);
 }
 
 function renderBudget() {
@@ -987,9 +987,9 @@ function renderBudget() {
   $('#bIncome').value = b.income ? formatWithCommas(b.income) : '';
 
   $('#budgetTools').innerHTML = `
-    <button class="btn btn-ghost" data-action="budget-lock">${b.locked ? '   �  ' : '   �  '}</button>
-    <button class="btn btn-primary" data-action="add-budget-tx"><svg class="ic"><use href="#i-plus"/></svg>    </button>
-    <button class="btn btn-ghost" data-action="budget-reset"> 60/20/20</button>`;
+    <button class="btn btn-ghost" data-action="budget-lock">${b.locked ? '🔒 النسب مقفلة — اضغط للفتح' : '🔓 النسب مفتوحة — اضغط للقفل'}</button>
+    <button class="btn btn-primary" data-action="add-budget-tx"><svg class="ic"><use href="#i-plus"/></svg> تسجيل صرف من ميزانية</button>
+    <button class="btn btn-ghost" data-action="budget-reset">↺ 60/20/20</button>`;
 
   $('#budgetCards').innerHTML = BUDGET_CATS.map(c => {
     const pct = +b[c.key] || 0;
@@ -1001,12 +1001,12 @@ function renderBudget() {
     return `<div class="card budget-card" style="border-inline-start-color:${c.color}">
       <div class="bc-head"><span>${c.icon} ${c.label} <small style="color:var(--muted)">(${fmtNumber(pct)}%)</small></span>
         <b class="bc-amt" id="amt-${c.key}" style="color:${c.color}">${fmtMoney(allocated)}</b></div>
-      <input type="range" min="0" max="100" step="1" value="${pct}" data-bkey="${c.key}" class="bc-slider" ${b.locked ? 'disabled' : ''} aria-label=" ${c.label}">
-      <div class="bc-row"><span> %</span>
+      <input type="range" min="0" max="100" step="1" value="${pct}" data-bkey="${c.key}" class="bc-slider" ${b.locked ? 'disabled' : ''} aria-label="نسبة ${c.label}">
+      <div class="bc-row"><span>النسبة %</span>
         <span><input type="text" inputmode="numeric" data-bnum="${c.key}" value="${pct}" class="bc-num" ${b.locked ? 'disabled' : ''}> %</span></div>
       <div class="bc-spend">
-        <div class="bc-spend-row"><span>:</span><b class="out" id="spent-${c.key}">${fmtMoney(spent)}</b></div>
-        <div class="bc-spend-row"><span>:</span><b id="rem-${c.key}" class="${exhausted ? 'out' : 'in'}">${exhausted ? ' ' : fmtMoney(remaining)}</b></div>
+        <div class="bc-spend-row"><span>صرفت:</span><b class="out" id="spent-${c.key}">${fmtMoney(spent)}</b></div>
+        <div class="bc-spend-row"><span>الباقي:</span><b id="rem-${c.key}" class="${exhausted ? 'out' : 'in'}">${exhausted ? 'خلصت ✔' : fmtMoney(remaining)}</b></div>
         <div class="share-bar"><i id="bar-${c.key}" style="width:${usedPct.toFixed(1)}%;background:${exhausted ? 'var(--expense)' : c.color}"></i></div>
       </div>
     </div>`;
@@ -1042,7 +1042,7 @@ function updateBudgetUI() {
     const exhausted = allocated > 0 && spent >= allocated;
     const am = $('#amt-' + c.key); if (am) am.textContent = fmtMoney(allocated);
     const sp = $('#spent-' + c.key); if (sp) sp.textContent = fmtMoney(spent);
-    const rm = $('#rem-' + c.key); if (rm) { rm.textContent = exhausted ? ' ' : fmtMoney(remaining); rm.className = exhausted ? 'out' : 'in'; }
+    const rm = $('#rem-' + c.key); if (rm) { rm.textContent = exhausted ? 'خلصت ✔' : fmtMoney(remaining); rm.className = exhausted ? 'out' : 'in'; }
     const bar = $('#bar-' + c.key); if (bar) { bar.style.width = usedPct.toFixed(1) + '%'; bar.style.background = exhausted ? 'var(--expense)' : c.color; }
   });
   const total = BUDGET_CATS.reduce((a, c) => a + (+b[c.key] || 0), 0);
@@ -1072,8 +1072,8 @@ function renderBudgetDaily() {
   }
   Charts.make('budgetDaily', { type: 'bar',
     data: { labels: Array.from({ length: dim }, (_, i) => fmtNumber(i + 1)), datasets: [
-      { type: 'line', label: ' ', data: Array(dim).fill(plannedDaily), borderColor: '#e2b457', borderWidth: 2, pointRadius: 0, fill: false },
-      { type: 'bar', label: '', data: actual, backgroundColor: 'rgba(226,112,143,.85)', borderRadius: 4, maxBarThickness: 12 } ] },
+      { type: 'line', label: 'المخطّط يوميًا', data: Array(dim).fill(plannedDaily), borderColor: '#e2b457', borderWidth: 2, pointRadius: 0, fill: false },
+      { type: 'bar', label: 'الفعلي', data: actual, backgroundColor: 'rgba(226,112,143,.85)', borderRadius: 4, maxBarThickness: 12 } ] },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { rtl: true, labels: { color: Charts.cssVar('--muted'), usePointStyle: true, pointStyle: 'circle', font: { family: "'Tajawal'", size: 11 } } },
         tooltip: { rtl: true, callbacks: { label: c => ` ${c.dataset.label}: ${fmtMoney(c.parsed.y)}` } } },
@@ -1086,19 +1086,19 @@ function openBudgetTxModal(btx) {
   const isNew = !btx;
   const t = btx || { cat: 'expense', amount: '', date: todayISO(), note: '' };
   let curCat = t.cat;
-  Modal.open(`<div class="modal-head"><h3>${isNew ? '   ' : ' '}</h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>${isNew ? 'تسجيل صرف من ميزانية' : 'تعديل صرف'}</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="btxForm" class="form-stack">
-      <div class="field"><label>  </label>
+      <div class="field"><label>من أي فئة؟</label>
         <div class="entry-type-seg" id="bcatSeg" style="grid-template-columns:repeat(3,1fr)">
           ${BUDGET_CATS.map(c => `<button type="button" data-k="${c.key}">${c.icon} ${c.label}</button>`).join('')}
         </div></div>
-      <div class="field"><label></label>
+      <div class="field"><label>المبلغ</label>
         <div class="amount-wrap"><input id="btAmount" inputmode="decimal" value="${t.amount}" placeholder="0">
         <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
-      <div class="field"><label></label><input type="date" id="btDate" value="${t.date || todayISO()}"></div>
-      <div class="field"><label> ()</label><input id="btNote" maxlength="60" value="${escapeHtml(t.note || '')}" placeholder=":  / "></div>
-      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> ${isNew ? '' : ''}</button></div>
+      <div class="field"><label>التاريخ</label><input type="date" id="btDate" value="${t.date || todayISO()}"></div>
+      <div class="field"><label>تعليق (اختياري)</label><input id="btNote" maxlength="60" value="${escapeHtml(t.note || '')}" placeholder="مثال: قهوة / سينما"></div>
+      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> ${isNew ? 'تسجيل' : 'حفظ'}</button></div>
     </form>`);
   const seg = $('#bcatSeg');
   const paint = () => seg.querySelectorAll('button').forEach(bt => {
@@ -1110,11 +1110,11 @@ function openBudgetTxModal(btx) {
   $('#btxForm').addEventListener('submit', ev => {
     ev.preventDefault();
     const amount = parseAmount($('#btAmount').value);
-    if (!(amount > 0)) return toast('  ', 'error');
+    if (!(amount > 0)) return toast('أدخل مبلغًا صحيحًا', 'error');
     if (isNew) b.tx.push({ id: uid(), cat: curCat, amount, date: $('#btDate').value || todayISO(), note: $('#btNote').value.trim() });
     else Object.assign(t, { cat: curCat, amount, date: $('#btDate').value || todayISO(), note: $('#btNote').value.trim() });
     DB.save(); Modal.close();
-    toast(isNew ? '   ' : '   ');
+    toast(isNew ? 'تم تسجيل الصرف ✔' : 'تم تحديث الصرف ✔');
     renderBudget();
   });
 }
@@ -1123,7 +1123,7 @@ function advCategoryOptions(type) {
   let cats = [];
   if (type === 'all') cats = [...getCats('expense'), ...getCats('income')];
   else cats = getCats(type);
-  const seen = new Set(); const opts = ['<option value="all"> </option>'];
+  const seen = new Set(); const opts = ['<option value="all">كل الفئات</option>'];
   cats.forEach(c => { if (!seen.has(c.id)) { seen.add(c.id); opts.push(`<option value="${c.id}">${escapeHtml(c.label)}</option>`); } });
   return opts.join('');
 }
@@ -1160,57 +1160,57 @@ function renderAdvResults() {
   const tot = Stats.totals(list);
   const sumEl = $('#advSummary');
   if (sumEl) sumEl.innerHTML = `
-    <div class="adv-sum"><b>${fmtNumber(list.length)}</b><span></span></div>
-    <div class="adv-sum"><b class="in">${fmtMoney(tot.income)}</b><span></span></div>
-    <div class="adv-sum"><b class="out">${fmtMoney(tot.expense)}</b><span></span></div>
-    <div class="adv-sum"><b class="${tot.net >= 0 ? 'in' : 'out'}">${fmtSigned(tot.net)}</b><span></span></div>`;
+    <div class="adv-sum"><b>${fmtNumber(list.length)}</b><span>حركة</span></div>
+    <div class="adv-sum"><b class="in">${fmtMoney(tot.income)}</b><span>دخل</span></div>
+    <div class="adv-sum"><b class="out">${fmtMoney(tot.expense)}</b><span>مصروف</span></div>
+    <div class="adv-sum"><b class="${tot.net >= 0 ? 'in' : 'out'}">${fmtSigned(tot.net)}</b><span>الصافي</span></div>`;
   const limited = list.slice(0, advState.limit);
   const resEl = $('#advResults');
   if (resEl) resEl.innerHTML = limited.length
     ? limited.map((t, i) => txItemHTML(t, i)).join('')
-    : `<div class="empty-state" style="padding:20px"><span class="em"></span><h3> </h3><p>   .</p></div>`;
+    : `<div class="empty-state" style="padding:20px"><span class="em">🔎</span><h3>لا نتائج</h3><p>عدّل الفلاتر أو امسحها.</p></div>`;
   const more = $('#advMore');
   if (more) {
     const left = list.length - advState.limit;
     more.style.display = left > 0 ? 'inline-flex' : 'none';
-    const sp = more.querySelector('span'); if (sp) sp.textContent = `  (${fmtNumber(left)} )`;
+    const sp = more.querySelector('span'); if (sp) sp.textContent = `عرض المزيد (${fmtNumber(left)} متبقي)`;
   }
 }
 
 function openAdvancedSearch(reset) {
   if (reset) advState = { text:'', type:'all', person:'all', category:'all', dateFrom:'', dateTo:'', amountMin:'', amountMax:'', sort:'newest', limit:20 };
   else advState.limit = 20;
-  Modal.open(`<div class="modal-head"><h3>  </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>🔎 بحث متقدم</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <div class="form-stack">
-      <div class="field"><label>  ( /  / )</label><input id="advText" value="${escapeHtml(advState.text)}" placeholder=" �"></div>
+      <div class="field"><label>نص حر (ملاحظة / فئة / اسم)</label><input id="advText" value="${escapeHtml(advState.text)}" placeholder="اكتب للبحث…"></div>
       <div class="adv-grid">
-        <div class="field"><label></label><select id="advType">
-          <option value="all"></option>
-          <option value="expense" ${advState.type==='expense'?'selected':''}></option>
-          <option value="income" ${advState.type==='income'?'selected':''}></option>
+        <div class="field"><label>النوع</label><select id="advType">
+          <option value="all">الكل</option>
+          <option value="expense" ${advState.type==='expense'?'selected':''}>مصروف</option>
+          <option value="income" ${advState.type==='income'?'selected':''}>دخل</option>
         </select></div>
-        <div class="field"><label></label><select id="advPerson">
-          <option value="all"></option>
+        <div class="field"><label>الشخص</label><select id="advPerson">
+          <option value="all">الكل</option>
           ${state.people.map(p => `<option value="${p.id}" ${advState.person == p.id ? 'selected' : ''}>${escapeHtml(p.name)}</option>`).join('')}
         </select></div>
       </div>
-      <div class="field"><label> ( )</label><select id="advCat">${advCategoryOptions(advState.type)}</select></div>
+      <div class="field"><label>الفئة (حسب النوع)</label><select id="advCat">${advCategoryOptions(advState.type)}</select></div>
       <div class="adv-grid">
-        <div class="field"><label> </label><input type="date" id="advFrom" value="${advState.dateFrom}"></div>
-        <div class="field"><label> </label><input type="date" id="advTo" value="${advState.dateTo}"></div>
+        <div class="field"><label>من تاريخ</label><input type="date" id="advFrom" value="${advState.dateFrom}"></div>
+        <div class="field"><label>إلى تاريخ</label><input type="date" id="advTo" value="${advState.dateTo}"></div>
       </div>
       <div class="adv-grid">
-        <div class="field"><label> </label><input id="advMin" inputmode="decimal" value="${escapeHtml(advState.amountMin)}" placeholder="0"></div>
-        <div class="field"><label> </label><input id="advMax" inputmode="decimal" value="${escapeHtml(advState.amountMax)}" placeholder="0"></div>
+        <div class="field"><label>أقل مبلغ</label><input id="advMin" inputmode="decimal" value="${escapeHtml(advState.amountMin)}" placeholder="0"></div>
+        <div class="field"><label>أعلى مبلغ</label><input id="advMax" inputmode="decimal" value="${escapeHtml(advState.amountMax)}" placeholder="0"></div>
       </div>
-      <div class="field"><label></label><select id="advSort">
-        <option value="newest" ${advState.sort==='newest'?'selected':''}></option>
-        <option value="oldest" ${advState.sort==='oldest'?'selected':''}></option>
-        <option value="highest" ${advState.sort==='highest'?'selected':''}> </option>
-        <option value="lowest" ${advState.sort==='lowest'?'selected':''}> </option>
+      <div class="field"><label>ترتيب</label><select id="advSort">
+        <option value="newest" ${advState.sort==='newest'?'selected':''}>الأحدث</option>
+        <option value="oldest" ${advState.sort==='oldest'?'selected':''}>الأقدم</option>
+        <option value="highest" ${advState.sort==='highest'?'selected':''}>الأعلى مبلغًا</option>
+        <option value="lowest" ${advState.sort==='lowest'?'selected':''}>الأقل مبلغًا</option>
       </select></div>
-      <div class="adv-actions"><button class="btn btn-ghost" data-action="adv-clear">   </button></div>
+      <div class="adv-actions"><button class="btn btn-ghost" data-action="adv-clear">🧹 مسح كل الفلاتر</button></div>
       <div id="advSummary" class="adv-summary"></div>
       <div id="advResults" class="adv-results"></div>
       <div style="margin-top:12px;text-align:center"><button class="btn btn-ghost" id="advMore" data-action="adv-more"><span></span></button></div>
@@ -1252,7 +1252,7 @@ function paintSeg(segEl, type) {
 function renderPersonPick(container, selectedId) {
   container.innerHTML = state.people.map(p => `
     <button type="button" class="person-btn ${p.id === selectedId ? 'sel' : ''}" data-pid="${p.id}">
-      <span class="avatar av-${p.id}">${escapeHtml((p.name || '')[0])}</span>${escapeHtml(p.name)}</button>`).join('');
+      <span class="avatar av-${p.id}">${escapeHtml((p.name || '؟')[0])}</span>${escapeHtml(p.name)}</button>`).join('');
 }
 
 function wireTxForm(root, st) {
@@ -1273,17 +1273,17 @@ function wireTxForm(root, st) {
 
 function txFormHTML(tx, p) {
   return `
-    <div class="field"><label></label><div class="person-pick" data-role="person"></div></div>
-    <div class="field"><label></label>
-      <div class="seg" data-role="type"><button type="button" data-t="expense"> </button>
-      <button type="button" data-t="income"> </button></div></div>
-    <div class="field"><label></label>
+    <div class="field"><label>باسم</label><div class="person-pick" data-role="person"></div></div>
+    <div class="field"><label>النوع</label>
+      <div class="seg" data-role="type"><button type="button" data-t="expense">مصروف ⬇</button>
+      <button type="button" data-t="income">دخل ⬆</button></div></div>
+    <div class="field"><label>المبلغ</label>
       <div class="amount-wrap"><input id="${p}Amount" inputmode="decimal" value="${tx.amount || ''}" placeholder="0">
       <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
-    <div class="field"><label></label><div class="cat-grid" data-role="cats"></div></div>
+    <div class="field"><label>الفئة</label><div class="cat-grid" data-role="cats"></div></div>
     <div class="field-row">
-      <div class="field"><label></label><input id="${p}Note" maxlength="80" value="${escapeHtml(tx.note || '')}"></div>
-      <div class="field"><label></label><input type="date" id="${p}Date" value="${tx.date || todayISO()}"></div>
+      <div class="field"><label>ملاحظة</label><input id="${p}Note" maxlength="80" value="${escapeHtml(tx.note || '')}"></div>
+      <div class="field"><label>التاريخ</label><input type="date" id="${p}Date" value="${tx.date || todayISO()}"></div>
     </div>`;
 }
 
@@ -1297,10 +1297,10 @@ function renderAdd() {
 }
 
 function openTxEditor(tx) {
-  Modal.open(`<div class="modal-head"><h3> </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>تعديل المعاملة</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="edForm" class="form-stack">${txFormHTML(tx, 'ed')}
-      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg>  </button></div>
+      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> حفظ التعديلات</button></div>
     </form>`);
   const st = { personId: tx.personId, type: tx.type, category: tx.category };
   wireTxForm($('#edForm'), st);
@@ -1308,21 +1308,21 @@ function openTxEditor(tx) {
   $('#edForm').addEventListener('submit', e => {
     e.preventDefault();
     const amount = parseAmount($('#edAmount').value);
-    if (!(amount > 0)) return toast('     ', 'error');
+    if (!(amount > 0)) return toast('أدخل مبلغًا صحيحًا أكبر من صفر', 'error');
     Repo.update('transactions', tx.id, { personId: st.personId, type: st.type, category: st.category, amount, note: $('#edNote').value.trim(), date: $('#edDate').value || todayISO(), time: tx.time || nowTime() });
-    Modal.close(); toast('   '); renderCurrent();
+    Modal.close(); toast('تم تحديث المعاملة ✔'); renderCurrent();
   });
 }
 
 function openTxOptions(id) {
   const tx = Repo.find('transactions', id); if (!tx) return;
   const other = state.people.find(p => p.id !== tx.personId);
-  Modal.open(`<div class="modal-head"><h3> </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>خيارات الحركة</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <div class="form-stack">
-      <button class="btn btn-ghost" data-action="transfer-tx" data-id="${id}"><svg class="ic"><use href="#i-swap"/></svg>   ${escapeHtml(other ? other.name : '')}</button>
-      <button class="btn btn-ghost" data-action="duplicate-tx" data-id="${id}"><svg class="ic"><use href="#i-copy"/></svg>    </button>
-      <button class="btn btn-danger" data-action="start-multi-delete"><svg class="ic"><use href="#i-trash"/></svg>   ()</button>
+      <button class="btn btn-ghost" data-action="transfer-tx" data-id="${id}"><svg class="ic"><use href="#i-swap"/></svg> نقل إلى ${escapeHtml(other ? other.name : 'الآخر')}</button>
+      <button class="btn btn-ghost" data-action="duplicate-tx" data-id="${id}"><svg class="ic"><use href="#i-copy"/></svg> تكرار معاملة بتاريخ اليوم</button>
+      <button class="btn btn-danger" data-action="start-multi-delete"><svg class="ic"><use href="#i-trash"/></svg> حذف متعدد (تحديد)</button>
     </div>`);
 }
 
@@ -1335,40 +1335,40 @@ function openCategoryManager(type, refresh) {
       <span class="cat-ic">${c.icon}</span>
       <b class="cat-lb">${escapeHtml(c.label)}</b>
       <span class="dh-actions">
-        <button class="icon-btn sm" data-action="edit-cat" data-id="${c.id}" data-type="${type}" aria-label=""><svg class="ic"><use href="#i-edit"/></svg></button>
-        <button class="icon-btn sm danger" data-action="del-cat" data-id="${c.id}" data-type="${type}" aria-label=""><svg class="ic"><use href="#i-trash"/></svg></button>
+        <button class="icon-btn sm" data-action="edit-cat" data-id="${c.id}" data-type="${type}" aria-label="تعديل"><svg class="ic"><use href="#i-edit"/></svg></button>
+        <button class="icon-btn sm danger" data-action="del-cat" data-id="${c.id}" data-type="${type}" aria-label="حذف"><svg class="ic"><use href="#i-trash"/></svg></button>
       </span>
     </div>`).join('');
-  Modal.open(`<div class="modal-head"><h3>  ${type==='income'?'':''}</h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>⚙️ فئات ${type==='income'?'الدخل':'المصروفات'}</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <div class="cat-manage-list">${rows}</div>
-    <div class="field" style="margin-top:14px"><label>  </label>
+    <div class="field" style="margin-top:14px"><label>إضافة فئة جديدة</label>
       <div style="display:flex;gap:8px">
-        <input id="ncIcon" maxlength="4" placeholder="" style="width:64px;text-align:center;flex:none">
-        <input id="ncLabel" placeholder=" " maxlength="20">
+        <input id="ncIcon" maxlength="4" placeholder="🧾" style="width:64px;text-align:center;flex:none">
+        <input id="ncLabel" placeholder="اسم الفئة" maxlength="20">
         <button type="button" class="btn btn-primary" data-action="add-cat" data-id="${type}" style="flex:none"><svg class="ic"><use href="#i-plus"/></svg></button>
       </div>
     </div>`);
 }
 function openEditCat(type, id) {
   const c = getCats(type).find(x => x.id === id); if (!c) return;
-  Modal.open(`<div class="modal-head"><h3> </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>تعديل الفئة</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <div class="form-stack">
       <div class="field-row">
-        <div class="field"><label></label><input id="ecIcon" maxlength="4" value="${escapeHtml(c.icon)}" style="text-align:center"></div>
-        <div class="field"><label></label><input id="ecLabel" maxlength="20" value="${escapeHtml(c.label)}"></div>
+        <div class="field"><label>الأيقونة</label><input id="ecIcon" maxlength="4" value="${escapeHtml(c.icon)}" style="text-align:center"></div>
+        <div class="field"><label>الاسم</label><input id="ecLabel" maxlength="20" value="${escapeHtml(c.label)}"></div>
       </div>
-      <div class="form-actions"><button class="btn btn-primary" data-action="save-cat" data-id="${id}" data-type="${type}"><svg class="ic"><use href="#i-check"/></svg> </button></div>
+      <div class="form-actions"><button class="btn btn-primary" data-action="save-cat" data-id="${id}" data-type="${type}"><svg class="ic"><use href="#i-check"/></svg> حفظ</button></div>
     </div>`);
 }
 
-/*    */
+/* ═══ الديون ═══ */
 let selectedPersonId = null;
 
 const DEBT_KINDS = {
-  to_us:  { label:'   ()', isIncome:true  },
-  we_owe: { label:'   ()', isIncome:false }
+  to_us:  { label:'🟢 دين له (علينا)', isIncome:true  },
+  we_owe: { label:'🔴 دين عليه (لنا)', isIncome:false }
 };
 
 function personStats(person) {
@@ -1406,25 +1406,25 @@ function renderDebtsSummary() {
   const pctNet = totalAll > 0 ? (Math.abs(sum.net) / totalAll) * 100 : 0;
   return `<div class="card debt-summary-card">
     <div class="share-row">
-      <span class="avatar" style="background:var(--income)"></span>
+      <span class="avatar" style="background:var(--income)">🟢</span>
       <div class="share-info">
-        <div class="share-top"><b>  ()</b><span class="in">${fmtMoney(sum.toUs)}</span></div>
+        <div class="share-top"><b>مجموع له (علينا)</b><span class="in">${fmtMoney(sum.toUs)}</span></div>
         <div class="share-bar"><i style="width:${pctTo.toFixed(2)}%;background:var(--income)"></i></div>
         <span class="share-pct in">${fmtNumber(+pctTo.toFixed(2))}%</span>
       </div>
     </div>
     <div class="share-row">
-      <span class="avatar" style="background:var(--expense)"></span>
+      <span class="avatar" style="background:var(--expense)">🔴</span>
       <div class="share-info">
-        <div class="share-top"><b>  ()</b><span class="out">${fmtMoney(sum.weOwe)}</span></div>
+        <div class="share-top"><b>مجموع عليه (لنا)</b><span class="out">${fmtMoney(sum.weOwe)}</span></div>
         <div class="share-bar"><i style="width:${pctWe.toFixed(2)}%;background:var(--expense)"></i></div>
         <span class="share-pct out">${fmtNumber(+pctWe.toFixed(2))}%</span>
       </div>
     </div>
     <div class="share-row">
-      <span class="avatar" style="background:var(--gold)"></span>
+      <span class="avatar" style="background:var(--gold)">⚖️</span>
       <div class="share-info">
-        <div class="share-top"><b> </b><span class="${sum.net >= 0 ? 'in' : 'out'}">${fmtSigned(sum.net)}</span></div>
+        <div class="share-top"><b>الصافي العام</b><span class="${sum.net >= 0 ? 'in' : 'out'}">${fmtSigned(sum.net)}</span></div>
         <div class="share-bar"><i style="width:${pctNet.toFixed(2)}%;background:${sum.net >= 0 ? 'var(--income)' : 'var(--expense)'}"></i></div>
         <span class="share-pct ${sum.net >= 0 ? 'in' : 'out'}">${fmtNumber(+pctNet.toFixed(2))}%</span>
       </div>
@@ -1442,19 +1442,19 @@ function renderDebtsList() {
   const debts = state.debts || [];
   const summary = renderDebtsSummary();
   if (!debts.length) {
-    return summary + `<div class="card empty-state"><span class="em"></span><h3>    </h3>
-      <p>       .    .</p></div>`;
+    return summary + `<div class="card empty-state"><span class="em">💵</span><h3>لا يوجد أشخاص مسجلون بعد</h3>
+      <p>ابدأ بإضافة شخص، ثم اضغط عليه لتسجيل الديون. الأحدث نشاطًا يظهر أعلى.</p></div>`;
   }
   const personsHtml = orderedDebts().map(p => {
     const s = personStats(p);
     const initial = (p.name || '?')[0];
-    const netTxt = s.net > 0 ? ` ${fmtMoney(s.net)}` : s.net < 0 ? ` ${fmtMoney(-s.net)}` : ' ';
+    const netTxt = s.net > 0 ? `له ${fmtMoney(s.net)}` : s.net < 0 ? `عليه ${fmtMoney(-s.net)}` : 'مسدد ✅';
     const netCls = s.net > 0 ? 'in' : s.net < 0 ? 'out' : '';
     return `<article class="card person-debt-card" data-action="open-person" data-id="${p.id}">
       <span class="avatar av-1">${escapeHtml(initial)}</span>
       <div class="pd-info">
         <h3>${escapeHtml(p.name)}</h3>
-        <span> ${fmtMoney(s.green)} �  ${fmtMoney(s.red)}</span>
+        <span>🟢 ${fmtMoney(s.green)} • 🔴 ${fmtMoney(s.red)}</span>
         ${tugBarHTML(s, true)}
       </div>
       <div class="pd-side">
@@ -1468,51 +1468,51 @@ function renderDebtsList() {
 function renderPersonDetail(person) {
   const s = personStats(person);
   const netAbs = fmtMoney(Math.abs(s.net));
-  const netLabel = s.net > 0 ? ` ` : s.net < 0 ? ` ` : ' ';
+  const netLabel = s.net > 0 ? `له 🟢` : s.net < 0 ? `عليه 🔴` : 'مسدد ✅';
   const netCls = s.net > 0 ? 'in' : s.net < 0 ? 'out' : '';
-  const head = `<button class="back-btn" data-action="close-person"><svg class="ic"><use href="#i-back"/></svg>   </button>
+  const head = `<button class="back-btn" data-action="close-person"><svg class="ic"><use href="#i-back"/></svg> رجوع لكل الأشخاص</button>
     <article class="card person-head-card">
-      <h2> ${escapeHtml(person.name)}</h2>
-      <div class="net-line ${netCls}">: ${netAbs} ${netLabel}</div>
+      <h2>💵 ${escapeHtml(person.name)}</h2>
+      <div class="net-line ${netCls}">الصافي: ${netAbs} ${netLabel}</div>
       ${tugBarHTML(s, false)}
       <div class="tug-labels">
-        <span class="in">  ${fmtNumber(Math.round(s.gPct))}%</span>
-        <span class="out">  ${fmtNumber(Math.round(s.rPct))}%</span>
+        <span class="in">🟢 له ${fmtNumber(Math.round(s.gPct))}%</span>
+        <span class="out">🔴 عليه ${fmtNumber(Math.round(s.rPct))}%</span>
       </div>
       <div class="person-head-meta">
-        <div class="phm-box green"><span>  </span><b>${fmtMoney(s.green)}</b></div>
-        <div class="phm-box red"><span>  </span><b>${fmtMoney(s.red)}</b></div>
+        <div class="phm-box green"><span>🟢 مجموع له</span><b>${fmtMoney(s.green)}</b></div>
+        <div class="phm-box red"><span>🔴 مجموع عليه</span><b>${fmtMoney(s.red)}</b></div>
       </div>
     </article>
     <div class="person-actions-row">
-      <button class="btn btn-income" data-action="add-debt-entry" data-id="${person.id}" data-kind="to_us"><svg class="ic"><use href="#i-plus"/></svg>   </button>
-      <button class="btn btn-expense" data-action="add-debt-entry" data-id="${person.id}" data-kind="we_owe"><svg class="ic"><use href="#i-plus"/></svg>   </button>
+      <button class="btn btn-income" data-action="add-debt-entry" data-id="${person.id}" data-kind="to_us"><svg class="ic"><use href="#i-plus"/></svg> 🟢 دين له</button>
+      <button class="btn btn-expense" data-action="add-debt-entry" data-id="${person.id}" data-kind="we_owe"><svg class="ic"><use href="#i-plus"/></svg> 🔴 دين عليه</button>
     </div>`;
   const entries = (person.entries || []).map((e, i) => ({ ...e, _i: i }))
     .sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b._i - a._i));
   let historyHtml = '';
   if (entries.length) {
-    historyHtml = `<div class="debt-history"><div class="dh-title">   (${fmtNumber(entries.length)}) �  </div>` +
+    historyHtml = `<div class="debt-history"><div class="dh-title">📜 سجل الحركات (${fmtNumber(entries.length)}) — الأحدث أعلى</div>` +
       entries.map(e => {
-        const k = DEBT_KINDS[e.kind] || { label:'', isIncome:true };
+        const k = DEBT_KINDS[e.kind] || { label:'حركة', isIncome:true };
         return `<div class="dh-row k-${e.kind}">
-          ${e.img ? `<button class="icon-btn sm img-btn" data-action="view-img" data-id="${person.id}|${e.id}" aria-label=" " title=" /"></button>` : ''}
+          ${e.img ? `<button class="icon-btn sm img-btn" data-action="view-img" data-id="${person.id}|${e.id}" aria-label="عرض الصورة" title="صورة الإشعار/الفاتورة">📷</button>` : ''}
           <div class="dh-main">
             <strong>${k.label}</strong>
-            <time>${fmtDate(e.date)}${e.time ? ' � ' + e.time : ''}</time>
+            <time>${fmtDate(e.date)}${e.time ? ' • ' + e.time : ''}</time>
             ${e.note ? `<em>${escapeHtml(e.note)}</em>` : ''}
           </div>
           <b class="dh-amount ${k.isIncome ? 'in' : 'out'}">+ ${fmtMoney(e.amount)}</b>
           <span class="dh-actions">
-            <button class="icon-btn sm" data-action="edit-entry" data-id="${person.id}|${e.id}" aria-label=""><svg class="ic"><use href="#i-edit"/></svg></button>
-            <button class="icon-btn sm danger" data-action="delete-entry" data-id="${person.id}|${e.id}" aria-label=""><svg class="ic"><use href="#i-trash"/></svg></button>
+            <button class="icon-btn sm" data-action="edit-entry" data-id="${person.id}|${e.id}" aria-label="تعديل"><svg class="ic"><use href="#i-edit"/></svg></button>
+            <button class="icon-btn sm danger" data-action="delete-entry" data-id="${person.id}|${e.id}" aria-label="حذف"><svg class="ic"><use href="#i-trash"/></svg></button>
           </span>
         </div>`;
       }).join('') + `</div>`;
   } else {
     historyHtml = `<div class="card empty-state" style="padding:30px 20px">
-      <span class="em"></span><h3>   </h3>
-      <p>            /.</p></div>`;
+      <span class="em">📋</span><h3>لا توجد حركات بعد</h3>
+      <p>ابدأ بإضافة 🟢 دين له أو 🔴 دين عليه، ويمكن إرفاق صورة إشعار/فاتورة.</p></div>`;
   }
   return head + historyHtml;
 }
@@ -1528,11 +1528,11 @@ function renderDebts() {
 }
 
 function openPersonOptions(person) {
-  Modal.open(`<div class="modal-head"><h3> � ${escapeHtml(person.name)}</h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>خيارات — ${escapeHtml(person.name)}</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <div class="form-stack">
-      <button class="btn btn-ghost" data-action="rename-person" data-id="${person.id}">  </button>
-      <button class="btn btn-ghost" data-action="delete-person" data-id="${person.id}" style="color:var(--expense)">  </button>
+      <button class="btn btn-ghost" data-action="rename-person" data-id="${person.id}">✏️ تعديل الاسم</button>
+      <button class="btn btn-ghost" data-action="delete-person" data-id="${person.id}" style="color:var(--expense)">🗑 حذف الشخص</button>
     </div>`);
 }
 
@@ -1540,30 +1540,30 @@ function openEntryEditor(person, entry, defKind) {
   const isNew = !entry;
   const e = entry || { kind: defKind || 'to_us', amount: '', date: todayISO(), note: '' };
   let entryImg = (entry && entry.img) || null;
-  Modal.open(`<div class="modal-head"><h3>${isNew ? ' ' : ' '} � ${escapeHtml(person.name)}</h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>${isNew ? 'إضافة حركة' : 'تعديل الحركة'} — ${escapeHtml(person.name)}</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="entryForm" class="form-stack">
-      <div class="field"><label> </label>
+      <div class="field"><label>نوع الحركة</label>
         <div class="entry-type-seg" id="kindSeg">
-          <button type="button" data-k="to_us">  </button>
-          <button type="button" data-k="we_owe">  </button>
+          <button type="button" data-k="to_us">🟢 دين له</button>
+          <button type="button" data-k="we_owe">🔴 دين عليه</button>
         </div></div>
       <div class="field-row">
-        <div class="field"><label></label>
+        <div class="field"><label>المبلغ</label>
           <div class="amount-wrap"><input id="eAmount" inputmode="decimal" value="${e.amount}" placeholder="0">
           <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
-        <div class="field"><label></label><input type="date" id="eDate" value="${e.date || todayISO()}"></div>
+        <div class="field"><label>التاريخ</label><input type="date" id="eDate" value="${e.date || todayISO()}"></div>
       </div>
-      <div class="field"><label> ()</label><input id="eNote" maxlength="60" value="${escapeHtml(e.note || '')}" placeholder=":  /  "></div>
-      <div class="field"><label>   /  ()</label>
+      <div class="field"><label>تعليق (اختياري)</label><input id="eNote" maxlength="60" value="${escapeHtml(e.note || '')}" placeholder="مثال: كاش / تحويل بنكي"></div>
+      <div class="field"><label>📷 صورة إشعار / فاتورة (اختياري)</label>
         <input type="file" id="eImg" accept="image/*" class="file-input-hidden">
         <div style="display:flex;gap:8px;align-items:center">
-          <label for="eImg" class="btn btn-ghost" style="flex:none"><svg class="ic"><use href="#i-cam"/></svg>  / </label>
-          <img id="eImgPrev" class="img-prev" style="display:none" alt="">
-          <button type="button" class="icon-btn sm danger" id="eImgDel" style="display:none" aria-label=" "><svg class="ic"><use href="#i-trash"/></svg></button>
+          <label for="eImg" class="btn btn-ghost" style="flex:none"><svg class="ic"><use href="#i-cam"/></svg> كاميرا / معرض</label>
+          <img id="eImgPrev" class="img-prev" style="display:none" alt="معاينة">
+          <button type="button" class="icon-btn sm danger" id="eImgDel" style="display:none" aria-label="إزالة الصورة"><svg class="ic"><use href="#i-trash"/></svg></button>
         </div></div>
       <div class="form-actions">
-        <button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> ${isNew ? '' : ''}</button>
+        <button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> ${isNew ? 'إضافة' : 'حفظ'}</button>
       </div>
     </form>`);
   let curKind = e.kind;
@@ -1586,14 +1586,14 @@ function openEntryEditor(person, entry, defKind) {
   showPrev();
   $('#eImg').addEventListener('change', ev => {
     const f = ev.target.files[0]; if (!f) return;
-    readImageFile(f, url => { entryImg = url; showPrev(); if (url) toast('    '); });
+    readImageFile(f, url => { entryImg = url; showPrev(); if (url) toast('تم إرفاق الصورة وضغطها 📷'); });
   });
   delBtn.addEventListener('click', () => { entryImg = null; showPrev(); });
   attachAmountFormat($('#eAmount'));
   $('#entryForm').addEventListener('submit', ev => {
     ev.preventDefault();
     const amount = parseAmount($('#eAmount').value);
-    if (!(amount > 0)) return toast('  ', 'error');
+    if (!(amount > 0)) return toast('أدخل مبلغًا صحيحًا', 'error');
     const payload = { kind: curKind, amount, date: $('#eDate').value || todayISO(), note: $('#eNote').value.trim(), time: (entry && entry.time) || nowTime(), img: entryImg };
     if (isNew) {
       if (!person.entries) person.entries = [];
@@ -1603,7 +1603,7 @@ function openEntryEditor(person, entry, defKind) {
     }
     person.updatedAt = Date.now();
     DB.save(); Modal.close();
-    toast(isNew ? '   ' : '   ');
+    toast(isNew ? 'تمت إضافة الحركة ✔' : 'تم تحديث الحركة ✔');
     renderDebts();
   });
 }
@@ -1614,43 +1614,43 @@ function debtNameExists(name, excludeId) {
 }
 
 function openNewPersonModal() {
-  Modal.open(`<div class="modal-head"><h3>  </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>إضافة شخص جديد</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="npForm" class="form-stack">
-      <div class="field"><label> </label>
-        <input id="npName" maxlength="40" placeholder=":  " autofocus></div>
-      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg>  </button></div>
+      <div class="field"><label>اسم الشخص</label>
+        <input id="npName" maxlength="40" placeholder="مثال: أبو خالد" autofocus></div>
+      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> إضافة الشخص</button></div>
     </form>`);
   $('#npForm').addEventListener('submit', ev => {
     ev.preventDefault();
     const name = $('#npName').value.trim();
-    if (!name) return toast('  ', 'error');
-    if (debtNameExists(name)) return toast('   �   ', 'error');
+    if (!name) return toast('أدخل اسم الشخص', 'error');
+    if (debtNameExists(name)) return toast('الاسم موجود بالفعل — اختر اسمًا آخر', 'error');
     const now = Date.now();
     const p = { id: uid(), name, createdAt: todayISO(), updatedAt: now, entries: [] };
     Repo.insert('debts', p);
     Modal.close();
-    toast(`  ${escapeHtml(name)} `);
+    toast(`تم إضافة ${escapeHtml(name)} ✔`);
     selectedPersonId = p.id;
     renderDebts();
   });
 }
 
 function openRenamePersonModal(person) {
-  Modal.open(`<div class="modal-head"><h3>  </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>تعديل اسم الشخص</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="rnForm" class="form-stack">
-      <div class="field"><label> </label>
+      <div class="field"><label>الاسم الجديد</label>
         <input id="rnName" maxlength="40" value="${escapeHtml(person.name)}"></div>
-      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> </button></div>
+      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> حفظ</button></div>
     </form>`);
   $('#rnForm').addEventListener('submit', ev => {
     ev.preventDefault();
     const name = $('#rnName').value.trim();
-    if (!name) return toast(' ', 'error');
-    if (debtNameExists(name, person.id)) return toast('   �   ', 'error');
+    if (!name) return toast('أدخل اسمًا', 'error');
+    if (debtNameExists(name, person.id)) return toast('الاسم موجود بالفعل — اختر اسمًا آخر', 'error');
     person.name = name; person.updatedAt = Date.now(); DB.save();
-    Modal.close(); toast('   ');
+    Modal.close(); toast('تم تحديث الاسم ✔');
     renderDebts();
   });
 }
@@ -1658,16 +1658,16 @@ function openRenamePersonModal(person) {
 function sourceCardHTML(s) {
   const cat = categoryById(s.type, s.category);
   const count = state.transactions.filter(t => t.sourceId === s.id).length;
-  const days = [...s.days].sort((a, b) => a - b).map(fmtNumber).join(' ');
+  const days = [...s.days].sort((a, b) => a - b).map(fmtNumber).join('، ');
   return `<article class="card source-card">
     <span class="src-icon" style="background:${cat.color}26">${cat.icon}</span>
     <div class="src-info"><h3>${escapeHtml(s.label)}</h3>
-      <span>${s.type === 'income' ? '' : ''} � ${cat.label} � ${escapeHtml(personName(s.personId))}</span>
-      <span class="src-days"> : ${days} <em>� ${fmtNumber(count)}  </em></span></div>
+      <span>${s.type === 'income' ? 'دخل' : 'مصروف'} • ${cat.label} • ${escapeHtml(personName(s.personId))}</span>
+      <span class="src-days">📅 أيام: ${days} <em>— ${fmtNumber(count)} معاملة مولّدة</em></span></div>
     <div class="src-end"><b class="${s.type === 'income' ? 'in' : 'out'}">${fmtMoney(s.amount)}</b>
       <span class="tx-actions">
-        <button class="icon-btn sm" data-action="edit-source" data-id="${s.id}" aria-label=""><svg class="ic"><use href="#i-edit"/></svg></button>
-        <button class="icon-btn sm danger" data-action="del-source" data-id="${s.id}" aria-label=""><svg class="ic"><use href="#i-trash"/></svg></button>
+        <button class="icon-btn sm" data-action="edit-source" data-id="${s.id}" aria-label="تعديل"><svg class="ic"><use href="#i-edit"/></svg></button>
+        <button class="icon-btn sm danger" data-action="del-source" data-id="${s.id}" aria-label="حذف"><svg class="ic"><use href="#i-trash"/></svg></button>
       </span></div></article>`;
 }
 
@@ -1675,32 +1675,32 @@ function renderRecurring() {
   const el = $('#sourceList');
   el.innerHTML = state.sources.length
     ? state.sources.map(sourceCardHTML).join('')
-    : `<div class="card empty-state"><span class="em"></span><h3>    </h3>
-       <p>:   1 15    �     .</p>
-       <button class="btn btn-primary" data-action="new-source"><svg class="ic"><use href="#i-plus"/></svg>  </button></div>`;
+    : `<div class="card empty-state"><span class="em">🔁</span><h3>لا توجد مصادر ثابتة بعد</h3>
+       <p>مثال: راتب يوم 1 و15، أو إيجار شهري — يتولّد تلقائيًا دون تكرار إدخاله.</p>
+       <button class="btn btn-primary" data-action="new-source"><svg class="ic"><use href="#i-plus"/></svg> إضافة مصدر</button></div>`;
 }
 
 function openSourceEditor(source) {
   const isNew = !source;
   const s = source || { label:'', personId:1, type:'income', category:'salary', amount:'', days:[1], active:true };
   const daySet = new Set(s.days);
-  Modal.open(`<div class="modal-head"><h3>${isNew ? '  ' : ' '}</h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>${isNew ? 'مصدر ثابت جديد' : 'تعديل المصدر'}</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="srcForm" class="form-stack">
-      <div class="field"><label> </label><input id="srcLabel" value="${escapeHtml(s.label)}" placeholder=":   /  "></div>
-      <div class="field"><label></label><div class="person-pick" data-role="person"></div></div>
-      <div class="field"><label></label><div class="seg" data-role="type">
-        <button type="button" data-t="expense"> </button><button type="button" data-t="income"> </button></div></div>
+      <div class="field"><label>مسمّى المصدر</label><input id="srcLabel" value="${escapeHtml(s.label)}" placeholder="مثال: راتب أحمد / إيجار الشقة"></div>
+      <div class="field"><label>باسم</label><div class="person-pick" data-role="person"></div></div>
+      <div class="field"><label>النوع</label><div class="seg" data-role="type">
+        <button type="button" data-t="expense">مصروف ⬇</button><button type="button" data-t="income">دخل ⬆</button></div></div>
       <div class="field-row">
-        <div class="field"><label></label><div class="amount-wrap"><input id="srcAmount" inputmode="decimal" value="${s.amount}" placeholder="0">
+        <div class="field"><label>المبلغ</label><div class="amount-wrap"><input id="srcAmount" inputmode="decimal" value="${s.amount}" placeholder="0">
         <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
-        <div class="field"><label></label><div style="padding-top:2px"><div class="cat-grid" data-role="cats"></div></div></div>
+        <div class="field"><label>الفئة</label><div style="padding-top:2px"><div class="cat-grid" data-role="cats"></div></div></div>
       </div>
-      <div class="field"><label>   </label>
+      <div class="field"><label>أيام الصرف في الشهر</label>
         <div class="day-grid" id="dayGrid">${Array.from({length:31},(_,i)=>`<button type="button" data-d="${i+1}" class="${daySet.has(i+1)?'sel':''}">${fmtNumber(i+1)}</button>`).join('')}</div>
-        <p class="hint" style="margin:7px 0 0"> 29-31     .</p></div>
-      <label class="check-line"><input type="checkbox" id="srcActive" ${s.active !== false ? 'checked' : ''}>  (  )</label>
-      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg>  </button></div>
+        <p class="hint" style="margin:7px 0 0">اليوم 29-31 يُتجاوز تلقائيًا في الأشهر القصيرة.</p></div>
+      <label class="check-line"><input type="checkbox" id="srcActive" ${s.active !== false ? 'checked' : ''}> مفعّل (يولّد المعاملات تلقائيًا)</label>
+      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> حفظ المصدر</button></div>
     </form>`);
   const st = { personId: s.personId, type: s.type, category: s.category };
   wireTxForm($('#srcForm'), st);
@@ -1715,14 +1715,14 @@ function openSourceEditor(source) {
     e.preventDefault();
     const label = $('#srcLabel').value.trim();
     const amount = parseAmount($('#srcAmount').value);
-    if (!label) return toast('  ', 'error');
-    if (!(amount > 0)) return toast('  ', 'error');
-    if (!daySet.size) return toast('    ', 'error');
+    if (!label) return toast('أدخل مسمّى للمصدر', 'error');
+    if (!(amount > 0)) return toast('أدخل مبلغًا صحيحًا', 'error');
+    if (!daySet.size) return toast('اختر يومًا واحدًا على الأقل', 'error');
     const payload = { label, personId: st.personId, type: st.type, category: st.category, amount, days: [...daySet], active: $('#srcActive').checked };
     if (isNew) Repo.insert('sources', { id: uid(), ...payload });
     else Repo.update('sources', s.id, payload);
     Recurring.generate();
-    Modal.close(); toast(isNew ? '     ' : '   ');
+    Modal.close(); toast(isNew ? 'تمت إضافة المصدر وتوليد معاملاته ✔' : 'تم تحديث المصدر ✔');
     renderCurrent(); renderHome();
   });
 }
@@ -1760,38 +1760,38 @@ function goalStats(g) {
 function renderGoals() {
   const el = $('#goalList');
   if (!state.goals.length) {
-    el.innerHTML = `<div class="card empty-state"><span class="em"></span><h3>   </h3>
-      <p>         .</p>
-      <button class="btn btn-gold" data-action="new-goal"><svg class="ic"><use href="#i-plus"/></svg>  </button></div>`;
+    el.innerHTML = `<div class="card empty-state"><span class="em">🎯</span><h3>لا توجد أهداف ادخار</h3>
+      <p>لابتوب جديد؟ رحلة؟ حدّدا الهدف وسيساعدكما التطبيق على الوصول إليه.</p>
+      <button class="btn btn-gold" data-action="new-goal"><svg class="ic"><use href="#i-plus"/></svg> إنشاء هدف</button></div>`;
   } else {
     const sorted = [...state.goals].sort((a, b) => a.dueDate.localeCompare(b.dueDate));
     el.innerHTML = sorted.map(g => {
       const s = goalStats(g);
       const p1 = state.people[0], p2 = state.people[1];
-      const dueTxt = parseISO(g.dueDate) < new Date() ? '  '
+      const dueTxt = parseISO(g.dueDate) < new Date() ? 'انتهى الموعد ⏰'
         : toLatin(new Intl.DateTimeFormat('ar', { day:'numeric', month:'long', year:'numeric' }).format(parseISO(g.dueDate)));
-      const autoBadge = g.auto ? '<span class="auto-badge"> </span>' : '';
-      const lbl1 = g.auto ? ` ${escapeHtml(p1.name)}${(s.profitPid!==0 && p1.id===s.profitPid) ? ' ( 20%)' : ' ()'}` : ` ${escapeHtml(p1.name)}`;
-      const lbl2 = g.auto ? ` ${escapeHtml(p2.name)}${(s.profitPid!==0 && p2.id===s.profitPid) ? ' ( 20%)' : ' ()'}` : ` ${escapeHtml(p2.name)}`;
-      const autoNote = g.auto ? `<div style="grid-column:1/-1"><span>  </span><b>${fmtDate(g.autoStart || g.createdAt || todayISO())}</b></div>` : '';
+      const autoBadge = g.auto ? '<span class="auto-badge">⚡ تلقائي</span>' : '';
+      const lbl1 = g.auto ? `ادخار ${escapeHtml(p1.name)}${(s.profitPid!==0 && p1.id===s.profitPid) ? ' (ربح 20%)' : ' (كامل)'}` : `مساهمة ${escapeHtml(p1.name)}`;
+      const lbl2 = g.auto ? `ادخار ${escapeHtml(p2.name)}${(s.profitPid!==0 && p2.id===s.profitPid) ? ' (ربح 20%)' : ' (كامل)'}` : `مساهمة ${escapeHtml(p2.name)}`;
+      const autoNote = g.auto ? `<div style="grid-column:1/-1"><span>يُحسب تلقائيًا منذ</span><b>${fmtDate(g.autoStart || g.createdAt || todayISO())}</b></div>` : '';
       return `<article class="card goal-card">
-        <header><h3> ${escapeHtml(g.name)}${autoBadge}</h3><span class="goal-due"><svg class="ic" style="width:14px;height:14px"><use href="#i-calendar"/></svg> ${dueTxt}</span></header>
+        <header><h3>🎯 ${escapeHtml(g.name)}${autoBadge}</h3><span class="goal-due"><svg class="ic" style="width:14px;height:14px"><use href="#i-calendar"/></svg> ${dueTxt}</span></header>
         <div class="goal-progress"><span class="goal-pct">${fmtNumber(Math.round(s.pct))}%</span>
           <div class="bar"><i data-w="${s.pct.toFixed(1)}"></i></div></div>
         <div class="goal-meta">
-          <div><span> </span><b class="in">${fmtMoney(s.saved)}</b></div>
-          <div><span></span><b>${fmtMoney(g.targetAmount)}</b></div>
+          <div><span>تم ادخاره</span><b class="in">${fmtMoney(s.saved)}</b></div>
+          <div><span>الهدف</span><b>${fmtMoney(g.targetAmount)}</b></div>
           <div><span>${lbl1}</span><b class="${s.per1 >= 0 ? 'in' : 'out'}">${fmtMoney(s.per1)}</b></div>
           <div><span>${lbl2}</span><b class="${s.per2 >= 0 ? 'in' : 'out'}">${fmtMoney(s.per2)}</b></div>
-          <div><span></span><b class="out">${fmtMoney(s.remaining)}</b></div>
-          <div><span> </span><b>${fmtMoney(s.requiredMonthly)}</b></div>
+          <div><span>المتبقي</span><b class="out">${fmtMoney(s.remaining)}</b></div>
+          <div><span>المطلوب شهريًا</span><b>${fmtMoney(s.requiredMonthly)}</b></div>
           ${autoNote}
-          <div style="grid-column:1/-1"><span>  </span><b>${fmtMoney(s.pace)} / </b></div>
+          <div style="grid-column:1/-1"><span>متوسط وتيرة الادخار</span><b>${fmtMoney(s.pace)} / شهر</b></div>
         </div>
         <div class="goal-actions">
-          ${g.auto ? '' : `<button class="btn btn-gold" data-action="add-contrib" data-id="${g.id}"><svg class="ic"><use href="#i-plus"/></svg>  </button>`}
-          <button class="btn btn-ghost" data-action="edit-goal" data-id="${g.id}"></button>
-          <button class="btn btn-ghost" data-action="del-goal" data-id="${g.id}" style="color:var(--expense)"></button>
+          ${g.auto ? '' : `<button class="btn btn-gold" data-action="add-contrib" data-id="${g.id}"><svg class="ic"><use href="#i-plus"/></svg> إضافة مساهمة</button>`}
+          <button class="btn btn-ghost" data-action="edit-goal" data-id="${g.id}">تعديل</button>
+          <button class="btn btn-ghost" data-action="del-goal" data-id="${g.id}" style="color:var(--expense)">حذف</button>
         </div></article>`;
     }).join('');
     requestAnimationFrame(() => $$('.bar i', el).forEach(b => b.style.width = b.dataset.w + '%'));
@@ -1821,11 +1821,11 @@ function renderMonthlyGoals() {
   const curStart = `${curMk}-01`;
   const curEnd = `${curMk}-${pad(daysInMonthOf(curMk))}`;
   const topCard = `<div class="card current-month-card">
-    <div class="cm-top"><b> ${monthLabel(curMk)} �  </b><span> ${fmtDate(curStart)}   ${fmtDate(curEnd)}</span></div>
+    <div class="cm-top"><b>📅 ${monthLabel(curMk)} — الشهر الحالي</b><span>بداية ${fmtDate(curStart)} → نهاية ${fmtDate(curEnd)}</span></div>
     <div class="cm-mid">
-      <span>: <b>${curTarget > 0 ? fmtMoney(curTarget) : ' '}</b></span>
-      <span>: <b class="in">${fmtMoney(curAch)}</b></span>
-      ${curSurplus > 0 ? `<span class="surplus-badge"> : ${fmtMoney(curSurplus)}</span>` : ''}
+      <span>الهدف: <b>${curTarget > 0 ? fmtMoney(curTarget) : 'غير محدد'}</b></span>
+      <span>المحقق: <b class="in">${fmtMoney(curAch)}</b></span>
+      ${curSurplus > 0 ? `<span class="surplus-badge">💰 فائض: ${fmtMoney(curSurplus)}</span>` : ''}
     </div>
     <div class="share-bar"><i style="width:${curPct.toFixed(2)}%;background:${curPct >= 100 ? 'var(--income)' : 'var(--gold)'}"></i></div>
     <span class="share-pct">${fmtNumber(+curPct.toFixed(2))}%</span>
@@ -1844,25 +1844,25 @@ function renderMonthlyGoals() {
     rows.push(`<div class="share-row top">
       <span class="avatar av-month">${fmtNumber(m + 1)}</span>
       <div class="share-info">
-        <div class="share-top"><b>${monthLabel(mk)} ${done ? '' : ''}</b><span class="${ach > 0 ? 'in' : ''}">${fmtMoney(ach)}</span></div>
-        <div class="share-sub">: ${target > 0 ? fmtMoney(target) : ' '} �  1  ${fmtNumber(daysInMonthOf(mk))}</div>
+        <div class="share-top"><b>${monthLabel(mk)} ${done ? '✅' : ''}</b><span class="${ach > 0 ? 'in' : ''}">${fmtMoney(ach)}</span></div>
+        <div class="share-sub">الهدف: ${target > 0 ? fmtMoney(target) : 'غير محدد'} • من 1 إلى ${fmtNumber(daysInMonthOf(mk))}</div>
         <div class="share-bar"><i style="width:${pct.toFixed(2)}%;background:${done ? 'var(--income)' : 'var(--gold)'}"></i></div>
-        <span class="share-pct">${fmtNumber(+pct.toFixed(2))}%${surplus > 0 ? ` � <span class="surplus-inline"> ${fmtMoney(surplus)}</span>` : ''}</span>
+        <span class="share-pct">${fmtNumber(+pct.toFixed(2))}%${surplus > 0 ? ` • <span class="surplus-inline">فائض ${fmtMoney(surplus)}</span>` : ''}</span>
       </div>
-      <button class="icon-btn sm" data-action="edit-month-goal" data-id="${mk}" aria-label="  "><svg class="ic"><use href="#i-edit"/></svg></button>
+      <button class="icon-btn sm" data-action="edit-month-goal" data-id="${mk}" aria-label="تعديل هدف الشهر"><svg class="ic"><use href="#i-edit"/></svg></button>
     </div>`);
   }
   const yPct = totalTarget > 0 ? Math.min(100, (totalCounted / totalTarget) * 100) : (totalCounted > 0 ? 100 : 0);
   holder.innerHTML = topCard + `<div class="card chart-card" style="margin-top:14px">
-    <h3>  � ${fmtNumber(year)}</h3>
-    <p class="hint" style="margin-bottom:10px">      �      .</p>
+    <h3>الأهداف الشهرية — ${fmtNumber(year)}</h3>
+    <p class="hint" style="margin-bottom:10px">حدّدا هدف كل شهر بزر ✏️ — المحقق يُحسب تلقائيًا، والفائض يُسجل مفصولًا.</p>
     <div class="share-list">${rows.join('')}</div>
     <div class="year-total">
-      <div class="share-top"><b>  </b><span class="in">${fmtMoney(totalCounted)}</span></div>
-      <div class="share-sub"> : ${totalTarget > 0 ? fmtMoney(totalTarget) : ' '}</div>
+      <div class="share-top"><b>🏁 إجمالي المحقق</b><span class="in">${fmtMoney(totalCounted)}</span></div>
+      <div class="share-sub">إجمالي الأهداف: ${totalTarget > 0 ? fmtMoney(totalTarget) : 'غير محدد'}</div>
       <div class="share-bar"><i style="width:${yPct.toFixed(2)}%;background:linear-gradient(90deg,var(--gold),var(--primary))"></i></div>
       <span class="share-pct">${fmtNumber(+yPct.toFixed(2))}%</span>
-      ${totalSurplus > 0 ? `<div class="surplus-badge" style="margin-top:8px">  : ${fmtMoney(totalSurplus)}</div>` : ''}
+      ${totalSurplus > 0 ? `<div class="surplus-badge" style="margin-top:8px">💰 فائض مفصول: ${fmtMoney(totalSurplus)}</div>` : ''}
     </div>
   </div>`;
 }
@@ -1870,20 +1870,20 @@ function renderMonthlyGoals() {
 function openGoalEditor(goal) {
   const isNew = !goal;
   const g = goal || { name:'', targetAmount:'', dueDate:'', initialSaved:'', auto:false, autoStart:'' };
-  Modal.open(`<div class="modal-head"><h3>${isNew ? '  ' : ' '}</h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>${isNew ? 'هدف ادخار جديد' : 'تعديل الهدف'}</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="goalForm" class="form-stack">
-      <div class="field"><label> </label><input id="gName" value="${escapeHtml(g.name)}" placeholder=":   "></div>
+      <div class="field"><label>اسم الهدف</label><input id="gName" value="${escapeHtml(g.name)}" placeholder="مثال: شراء لابتوب جديد"></div>
       <div class="field-row">
-        <div class="field"><label> </label><div class="amount-wrap"><input id="gTarget" inputmode="decimal" value="${g.targetAmount}" placeholder="0">
+        <div class="field"><label>المبلغ المطلوب</label><div class="amount-wrap"><input id="gTarget" inputmode="decimal" value="${g.targetAmount}" placeholder="0">
         <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
-        <div class="field"><label>  ()</label><input id="gInitial" inputmode="decimal" value="${g.initialSaved || ''}" placeholder="0"></div>
+        <div class="field"><label>مدخر مسبقًا (اختياري)</label><input id="gInitial" inputmode="decimal" value="${g.initialSaved || ''}" placeholder="0"></div>
       </div>
-      <div class="field"><label> </label><input type="date" id="gDue" value="${g.dueDate || ''}"></div>
-      <label class="check-line"><input type="checkbox" id="gAuto" ${g.auto ? 'checked' : ''}>     </label>
-      <p class="hint" style="margin:-6px 0 0">  :  � 20%�     20%    ( )     .  ��   .</p>
-      <div class="field"><label>  </label><input type="date" id="gAutoStart" value="${g.autoStart || g.createdAt || todayISO()}"></div>
-      <div class="form-actions"><button class="btn btn-gold" type="submit"><svg class="ic"><use href="#i-check"/></svg>  </button></div>
+      <div class="field"><label>التاريخ المستهدف</label><input type="date" id="gDue" value="${g.dueDate || ''}"></div>
+      <label class="check-line"><input type="checkbox" id="gAuto" ${g.auto ? 'checked' : ''}> ⚡ حساب تلقائي من المدخرات</label>
+      <p class="hint" style="margin:-6px 0 0">في الوضع التلقائي: شخص «الربح 20%» المحدد في الإعدادات يُحسب 20% فقط من صافيه (ربحه فقط)، والشريك الآخر يُحسب صافيه كاملًا. عند «بدون» يُحسب كلاهما كاملًا.</p>
+      <div class="field"><label>بداية الحساب التلقائي</label><input type="date" id="gAutoStart" value="${g.autoStart || g.createdAt || todayISO()}"></div>
+      <div class="form-actions"><button class="btn btn-gold" type="submit"><svg class="ic"><use href="#i-check"/></svg> حفظ الهدف</button></div>
     </form>`);
   attachAmountFormat($('#gTarget'));
   $('#goalForm').addEventListener('submit', e => {
@@ -1894,26 +1894,26 @@ function openGoalEditor(goal) {
     const initialSaved = parseAmount($('#gInitial').value) || 0;
     const auto = $('#gAuto').checked;
     const autoStart = $('#gAutoStart').value || todayISO();
-    if (!name) return toast('  ', 'error');
-    if (!(targetAmount > 0)) return toast('   ', 'error');
-    if (!dueDate) return toast('  ', 'error');
+    if (!name) return toast('أدخل اسم الهدف', 'error');
+    if (!(targetAmount > 0)) return toast('أدخل مبلغًا مطلوبًا صحيحًا', 'error');
+    if (!dueDate) return toast('اختر التاريخ المستهدف', 'error');
     if (isNew) Repo.insert('goals', { id: uid(), name, targetAmount, dueDate, initialSaved, contributions: [], createdAt: todayISO(), auto, autoStart });
     else Repo.update('goals', goal.id, { name, targetAmount, dueDate, initialSaved, auto, autoStart });
-    Modal.close(); toast(isNew ? '   � ! ' : '   ');
+    Modal.close(); toast(isNew ? 'تم إنشاء الهدف — وفّقا! 🎯' : 'تم تحديث الهدف ✔');
     renderGoals();
   });
 }
 
 function openContribModal(goal) {
   const st = { personId: state.people[0].id };
-  Modal.open(`<div class="modal-head"><h3>  �${escapeHtml(goal.name)}�</h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>مساهمة في «${escapeHtml(goal.name)}»</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="contribForm" class="form-stack">
-      <div class="field"><label></label><div class="person-pick" id="contribPersonPick"></div></div>
-      <div class="field"><label> </label><div class="amount-wrap"><input id="cAmount" inputmode="decimal" placeholder="0">
+      <div class="field"><label>باسم</label><div class="person-pick" id="contribPersonPick"></div></div>
+      <div class="field"><label>مبلغ المساهمة</label><div class="amount-wrap"><input id="cAmount" inputmode="decimal" placeholder="0">
       <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
-      <div class="field"><label></label><input type="date" id="cDate" value="${todayISO()}"></div>
-      <div class="form-actions"><button class="btn btn-gold" type="submit"><svg class="ic"><use href="#i-plus"/></svg>  </button></div>
+      <div class="field"><label>التاريخ</label><input type="date" id="cDate" value="${todayISO()}"></div>
+      <div class="form-actions"><button class="btn btn-gold" type="submit"><svg class="ic"><use href="#i-plus"/></svg> إضافة المساهمة</button></div>
     </form>`);
   const pick = $('#contribPersonPick');
   const paint = () => renderPersonPick(pick, st.personId);
@@ -1926,20 +1926,20 @@ function openContribModal(goal) {
   $('#contribForm').addEventListener('submit', e => {
     e.preventDefault();
     const amount = parseAmount($('#cAmount').value);
-    if (!(amount > 0)) return toast('  ', 'error');
+    if (!(amount > 0)) return toast('أدخل مبلغًا صحيحًا', 'error');
     if (!goal.contributions) goal.contributions = [];
     goal.contributions.push({ id: uid(), amount, date: $('#cDate').value || todayISO(), personId: st.personId });
     DB.save(); Modal.close();
-    toast(` ${fmtMoney(amount)}  ${escapeHtml(personName(st.personId))} `);
+    toast(`أُضيفت ${fmtMoney(amount)} باسم ${escapeHtml(personName(st.personId))} 💪`);
     renderGoals();
   });
 }
 
 function deltaBadge(cur, prev, increaseIsBad) {
-  if (prev <= 0) return `<span class="delta flat"> </span>`;
+  if (prev <= 0) return `<span class="delta flat">لا مقارنة</span>`;
   const p = ((cur - prev) / prev) * 100, up = p >= 0;
   const good = increaseIsBad ? !up : up;
-  return `<span class="delta ${good ? 'good' : 'bad'}">${up ? '' : ''} ${fmtNumber(Math.abs(Math.round(p)))}%</span>`;
+  return `<span class="delta ${good ? 'good' : 'bad'}">${up ? '▲' : '▼'} ${fmtNumber(Math.abs(Math.round(p)))}%</span>`;
 }
 
 const kpiCard = (title, val, badge, sub) =>
@@ -1948,28 +1948,28 @@ const kpiCard = (title, val, badge, sub) =>
 function buildTips(tc, tp, expNow, totalExp) {
   const tips = [];
   if (tc.income === 0 && tc.expense === 0)
-    tips.push({ t:'info', x:'     �      ��.' });
+    tips.push({ t:'info', x:'لا بيانات لهذا الشهر بعد — ابدأ بإضافة معاملاتكما من زر «إضافة».' });
   if (tc.income > 0 && tc.expense > tc.income)
-    tips.push({ t:'danger', x:`    <b>${fmtMoney(tc.expense - tc.income)}</b>   �    .` });
+    tips.push({ t:'danger', x:`المصروفات تجاوزت الدخل بمقدار <b>${fmtMoney(tc.expense - tc.income)}</b> هذا الشهر — راجعا الفئات الكبرى أدناه.` });
   const largest = Object.entries(expNow).sort((a, b) => b[1] - a[1])[0];
   if (largest && totalExp > 0 && largest[1] / totalExp > 0.3) {
     const c = categoryById('expense', largest[0]);
-    tips.push({ t:'warn', x:` �${c.label} ${c.icon}�   <b>${fmtNumber(Math.round(largest[1] / totalExp * 100))}%</b>    �     .` });
+    tips.push({ t:'warn', x:`فئة «${c.label} ${c.icon}» وحدها تستهلك <b>${fmtNumber(Math.round(largest[1] / totalExp * 100))}%</b> من مصروف الشهر — جرّبا وضع سقف أسبوعي لها.` });
   }
   if (tp.expense > 0 && tc.expense > tp.expense * 1.25)
-    tips.push({ t:'warn', x:`  <b>${fmtNumber(Math.round((tc.expense - tp.expense) / tp.expense * 100))}%</b>   .` });
+    tips.push({ t:'warn', x:`المصروف ارتفع <b>${fmtNumber(Math.round((tc.expense - tp.expense) / tp.expense * 100))}%</b> مقارنة بالشهر الماضي.` });
   const rate = Stats.savingsRate(tc);
   if (tc.income > 0 && rate >= 20)
-    tips.push({ t:'good', x:`   (<b>${fmtNumber(Math.round(rate))}%</b>) �      .` });
+    tips.push({ t:'good', x:`معدل ادخار ممتاز (<b>${fmtNumber(Math.round(rate))}%</b>) — فكّرا بتوجيه الفائض لأحد أهداف الادخار.` });
   else if (tc.income > 0 && rate > 0 && rate < 10)
-    tips.push({ t:'info', x:'    10% �          .' });
+    tips.push({ t:'info', x:'معدل الادخار أقل من 10% — حتى مبلغ صغير ثابت شهريًا يصنع فرقًا كبيرًا مع الوقت.' });
   for (const g of state.goals) {
     const s = goalStats(g);
     if (s.daysLeft >= 0 && s.remaining > 0 && s.pace < s.requiredMonthly * 0.7)
-      tips.push({ t:'warn', x:`    �${escapeHtml(g.name)}�    �   <b>${fmtMoney(s.requiredMonthly)}</b>    .` });
-    if (s.pct >= 100) tips.push({ t:'good', x:`   �${escapeHtml(g.name)}� � !` });
+      tips.push({ t:'warn', x:`وتيرة الادخار الحالية لهدف «${escapeHtml(g.name)}» أبطأ من المطلوب — يلزمكما نحو <b>${fmtMoney(s.requiredMonthly)}</b> شهريًا للوصول في الموعد.` });
+    if (s.pct >= 100) tips.push({ t:'good', x:`🎉 اكتمل هدف «${escapeHtml(g.name)}» — مبروك!` });
   }
-  if (!tips.length) tips.push({ t:'info', x:'        .' });
+  if (!tips.length) tips.push({ t:'info', x:'أضفا المزيد من المعاملات ليقدّم لكما التطبيق نصائح مخصصة.' });
   return tips;
 }
 
@@ -1981,24 +1981,24 @@ function renderAnalytics() {
   const prev = Stats.inMonth(state.transactions, mkPrev);
   const tc = Stats.totals(cur), tp = Stats.totals(prev);
   $('#analyticsTitle').innerHTML = '';
-  $('#analyticsTitle').append(`  � ${monthLabel(mkNow, true)}`);
+  $('#analyticsTitle').append(`التحليلات والإحصائيات — ${monthLabel(mkNow, true)}`);
   const dayOfMonth = new Date().getDate();
   const avgDaily = tc.expense / dayOfMonth;
   const forecast = avgDaily * daysInMonthOf(mkNow);
   const rate = Stats.savingsRate(tc);
   $('#kpiGrid').innerHTML =
-    kpiCard('  ', fmtMoney(tc.income), deltaBadge(tc.income, tp.income, false), '  ') +
-    kpiCard('  ', fmtMoney(tc.expense), deltaBadge(tc.expense, tp.expense, true), '  ') +
-    kpiCard('  ', fmtMoney(avgDaily), '', `  ${fmtNumber(dayOfMonth)} `) +
-    kpiCard('   ', fmtMoney(forecast), '', '  ') +
-    kpiCard(' ', fmtNumber(Math.round(rate)) + '%', '', rate >= 0 ? '   ' : '  ');
+    kpiCard('الدخل هذا الشهر', fmtMoney(tc.income), deltaBadge(tc.income, tp.income, false), 'عن الشهر الماضي') +
+    kpiCard('المصروف هذا الشهر', fmtMoney(tc.expense), deltaBadge(tc.expense, tp.expense, true), 'عن الشهر الماضي') +
+    kpiCard('متوسط الإنفاق اليومي', fmtMoney(avgDaily), '', `على مدى ${fmtNumber(dayOfMonth)} يومًا`) +
+    kpiCard('توقع مصروف نهاية الشهر', fmtMoney(forecast), '', 'حسب وتيرتكما الحالية') +
+    kpiCard('نسبة الادخار', fmtNumber(Math.round(rate)) + '%', '', rate >= 0 ? 'من دخل هذا الشهر' : 'تجاوز في المصروف');
   const expNow = Stats.byCategory(cur, 'expense'), expPrev = Stats.byCategory(prev, 'expense');
   const totalExp = tc.expense;
   const habits = [];
   const largest = Object.entries(expNow).sort((a, b) => b[1] - a[1])[0];
   if (largest) {
     const c = categoryById('expense', largest[0]);
-    habits.push({ icon: c.icon, title: '    ', text: `${c.label} � ${fmtMoney(largest[1])} (${fmtNumber(Math.round(largest[1] / totalExp * 100))}%  )` });
+    habits.push({ icon: c.icon, title: 'أكبر فئة إنفاق هذا الشهر', text: `${c.label} — ${fmtMoney(largest[1])} (${fmtNumber(Math.round(largest[1] / totalExp * 100))}% من المصروف)` });
   }
   let bestRise = null;
   for (const id of new Set([...Object.keys(expNow), ...Object.keys(expPrev)])) {
@@ -2007,18 +2007,18 @@ function renderAnalytics() {
   }
   if (bestRise) {
     const c = categoryById('expense', bestRise.id);
-    habits.push({ icon: '', title: '      ', text: `${c.label} ${c.icon} �  ${fmtMoney(bestRise.diff)}` });
+    habits.push({ icon: '📈', title: 'أكثر فئة زاد إنفاقها عن الشهر الماضي', text: `${c.label} ${c.icon} — زيادة ${fmtMoney(bestRise.diff)}` });
   }
   const incNow = Stats.byCategory(cur, 'income');
   const topInc = Object.entries(incNow).sort((a, b) => b[1] - a[1])[0];
   if (topInc) {
     const c = categoryById('income', topInc[0]);
-    habits.push({ icon: '', title: '    ', text: `${c.label} ${c.icon} � ${fmtMoney(topInc[1])}` });
+    habits.push({ icon: '💰', title: 'أعلى مصدر دخل هذا الشهر', text: `${c.label} ${c.icon} — ${fmtMoney(topInc[1])}` });
   }
   $('#habitsGrid').innerHTML = habits.length
     ? habits.map(h => `<div class="card habit-card"><span class="habit-icon">${h.icon}</span>
         <div><h4>${h.title}</h4><p>${h.text}</p></div></div>`).join('')
-    : `<div class="card hint">      .</div>`;
+    : `<div class="card hint">لا توجد بيانات كافية بعد لهذا الشهر.</div>`;
   const icons = { danger: 'alert', warn: 'alert', good: 'check', info: 'spark' };
   $('#tipsList').innerHTML = buildTips(tc, tp, expNow, totalExp)
     .map(t => `<li class="tip ${t.t}"><svg class="ic"><use href="#i-${icons[t.t]}"/></svg><div>${t.x}</div></li>`).join('');
@@ -2029,7 +2029,7 @@ const Charts = {
   reg: {},
   cssVar(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); },
   make(id, cfg) { const cv = document.getElementById(id); if (!cv) return; if (this.reg[id]) this.reg[id].destroy(); this.reg[id] = new Chart(cv, cfg); },
-  noData(id) { const cv = document.getElementById(id); if (cv) cv.parentNode.innerHTML = '<div class="no-data">     </div>'; },
+  noData(id) { const cv = document.getElementById(id); if (cv) cv.parentNode.innerHTML = '<div class="no-data">لا توجد بيانات كافية بعد 🌱</div>'; },
   axes() {
     return { x: { ticks: { color: this.cssVar('--muted'), font: { size: 10 } }, grid: { display: false } },
              y: { ticks: { color: this.cssVar('--muted'), font: { size: 10 } }, grid: { color: this.cssVar('--chart-grid') }, beginAtZero: true } };
@@ -2040,15 +2040,15 @@ const Charts = {
       callbacks: { label: c => ` ${c.dataset.label}: ${fmtMoney(c.parsed.y ?? c.parsed)}` } };
   },
   renderAll() {
-    if (!window.Chart) { $$('.chart-box').forEach(b => b.innerHTML = '<div class="no-data">   Chart.js (   )</div>'); return; }
+    if (!window.Chart) { $$('.chart-box').forEach(b => b.innerHTML = '<div class="no-data">يتطلب الرسم مكتبة Chart.js (غير متوفرة دون اتصال)</div>'); return; }
     const txs = state.transactions;
     const keys = Stats.lastMonthKeys(CONFIG.monthsWindow);
     const labels = keys.map(k => monthLabel(k));
     const mkNow = currentMonthKey();
     this.make('chartTrend', { type: 'line',
       data: { labels, datasets: [
-        { label: '', data: keys.map(k => Stats.totals(Stats.inMonth(txs, k)).income), borderColor: '#2fbf9a', backgroundColor: 'rgba(47,191,154,.14)', fill: true, tension: .38, borderWidth: 2.5, pointRadius: 3 },
-        { label: '', data: keys.map(k => Stats.totals(Stats.inMonth(txs, k)).expense), borderColor: '#e2708f', backgroundColor: 'rgba(226,112,143,.12)', fill: true, tension: .38, borderWidth: 2.5, pointRadius: 3 } ] },
+        { label: 'الدخل', data: keys.map(k => Stats.totals(Stats.inMonth(txs, k)).income), borderColor: '#2fbf9a', backgroundColor: 'rgba(47,191,154,.14)', fill: true, tension: .38, borderWidth: 2.5, pointRadius: 3 },
+        { label: 'المصروف', data: keys.map(k => Stats.totals(Stats.inMonth(txs, k)).expense), borderColor: '#e2708f', backgroundColor: 'rgba(226,112,143,.12)', fill: true, tension: .38, borderWidth: 2.5, pointRadius: 3 } ] },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: this.legend(), tooltip: this.moneyTip() }, scales: this.axes() } });
     this.make('chartPersonIncome', { type: 'bar',
       data: { labels, datasets: state.people.map((p, i) => ({ label: p.name, data: keys.map(k => Stats.totals(Stats.inMonth(Stats.ofPerson(txs, p.id), k)).income), backgroundColor: i === 0 ? '#0e6d5a' : '#e2b457', borderRadius: 7, maxBarThickness: 26 })) },
@@ -2071,12 +2071,12 @@ const Charts = {
     }
     this.make('chartDaily', { type: 'bar',
       data: { labels: Array.from({ length: dim }, (_, i) => fmtNumber(i + 1)), datasets: [
-        { label: '', data: dayIn, backgroundColor: 'rgba(47,191,154,.85)', borderRadius: 4, maxBarThickness: 12 },
-        { label: '', data: dayOut, backgroundColor: 'rgba(226,112,143,.85)', borderRadius: 4, maxBarThickness: 12 } ] },
+        { label: 'دخل', data: dayIn, backgroundColor: 'rgba(47,191,154,.85)', borderRadius: 4, maxBarThickness: 12 },
+        { label: 'مصروف', data: dayOut, backgroundColor: 'rgba(226,112,143,.85)', borderRadius: 4, maxBarThickness: 12 } ] },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: this.legend(), tooltip: this.moneyTip() }, scales: { ...this.axes(), x: { ...this.axes().x, ticks: { ...this.axes().x.ticks, maxTicksLimit: 12 } } } } });
     const rates = keys.map(k => Math.round(Stats.savingsRate(Stats.totals(Stats.inMonth(txs, k)))));
     this.make('chartSavings', { type: 'bar',
-      data: { labels, datasets: [{ label: '  %', data: rates, borderRadius: 8, maxBarThickness: 30, backgroundColor: rates.map(r => r >= 0 ? 'rgba(47,191,154,.85)' : 'rgba(226,112,143,.9)') }] },
+      data: { labels, datasets: [{ label: 'معدل الادخار %', data: rates, borderRadius: 8, maxBarThickness: 30, backgroundColor: rates.map(r => r >= 0 ? 'rgba(47,191,154,.85)' : 'rgba(226,112,143,.9)') }] },
       options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { rtl: true, callbacks: { label: c => ` ${fmtNumber(c.parsed.y)}%` } } }, scales: this.axes() } });
   }
 };
@@ -2107,41 +2107,41 @@ async function copyText(text) {
 
 function openExportModal() {
   const dataStr = JSON.stringify(state, null, 2);
-  Modal.open(`<div class="modal-head"><h3>  </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>📤 تصدير البيانات</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <ol class="steps-list">
-      <li> � �.</li>
-      <li>   / Google Keep /  � �    .</li>
-      <li>   �    .</li>
+      <li>اضغط «نسخ الكل».</li>
+      <li>افتح تطبيق الملاحظات / Google Keep / أو «رسائل محفوظة» في واتساب أو تيليجرام.</li>
+      <li>الصق النص واحفظه — هذه نسختك الاحتياطية الكاملة.</li>
     </ol>
     <textarea id="exportText" class="export-area" readonly>${escapeHtml(dataStr)}</textarea>
     <div class="form-actions" style="justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-primary" id="copyAllBtn"><svg class="ic"><use href="#i-check"/></svg>  </button>
-      <button class="btn btn-ghost" id="selectAllBtn"><svg class="ic"><use href="#i-edit"/></svg>   ( )</button>
+      <button class="btn btn-primary" id="copyAllBtn"><svg class="ic"><use href="#i-check"/></svg> نسخ الكل</button>
+      <button class="btn btn-ghost" id="selectAllBtn"><svg class="ic"><use href="#i-edit"/></svg> تحديد الكل (نسخ يدوي)</button>
     </div>
-    <p class="hint" style="margin:12px 0 0;text-align:center">  :   ��   .</p>`);
+    <p class="hint" style="margin:12px 0 0;text-align:center">💡 للاستعادة لاحقًا: الإعدادات ← «استيراد» ← الصق النص.</p>`);
   $('#copyAllBtn').addEventListener('click', async () => {
     const ok = await copyText(dataStr);
-    if (ok) toast('   �     ');
+    if (ok) toast('تم النسخ ✔ — الصقه الآن في مكان آمن');
     else {
       const ta = $('#exportText');
       ta.focus(); ta.select(); ta.setSelectionRange(0, 999999999);
-      toast(' :      ', 'info');
+      toast('انسخ يدويًا: اضغط مطولًا داخل الصندوق واختر نسخ', 'info');
     }
   });
   $('#selectAllBtn').addEventListener('click', () => {
     const ta = $('#exportText');
     ta.focus(); ta.select(); ta.setSelectionRange(0, 999999999);
-    toast('   �    ��', 'info');
+    toast('تم تحديد النص — اضغط مطولًا واختر «نسخ»', 'info');
   });
 }
 
 function openImportPicker() {
-  Modal.open(`<div class="modal-head"><h3>  </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>📥 استيراد البيانات</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <div style="display:grid;gap:10px">
-      <button type="button" class="btn btn-primary" id="importPasteBtn"><svg class="ic"><use href="#i-spark"/></svg>   ( )</button>
-      <label class="btn btn-ghost" for="importFile" style="cursor:pointer"><svg class="ic"><use href="#i-up"/></svg>   JSON
+      <button type="button" class="btn btn-primary" id="importPasteBtn"><svg class="ic"><use href="#i-spark"/></svg> لصق نص (الطريقة الأضمن)</button>
+      <label class="btn btn-ghost" for="importFile" style="cursor:pointer"><svg class="ic"><use href="#i-up"/></svg> اختيار ملف JSON
         <input type="file" id="importFile" class="file-input-hidden" accept=".json,application/json"></label>
     </div>`);
   $('#importPasteBtn').addEventListener('click', openImportFallback);
@@ -2153,16 +2153,16 @@ function openImportPicker() {
 }
 
 function openImportFallback() {
-  Modal.open(`<div class="modal-head"><h3>   </h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
-    <p class="hint" style="margin-bottom:12px">       � �:</p>
+  Modal.open(`<div class="modal-head"><h3>📥 لصق النسخة الاحتياطية</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
+    <p class="hint" style="margin-bottom:12px">الصق النص الذي نسخته سابقًا ثم اضغط «استيراد الآن»:</p>
     <textarea id="importText" class="export-area" placeholder='{"people": [...], "transactions": [...]}'></textarea>
     <div class="form-actions" style="justify-content:center">
-      <button class="btn btn-primary" id="pasteImportBtn"><svg class="ic"><use href="#i-up"/></svg>  </button>
+      <button class="btn btn-primary" id="pasteImportBtn"><svg class="ic"><use href="#i-up"/></svg> استيراد الآن</button>
     </div>`);
   $('#pasteImportBtn').addEventListener('click', () => {
     const txt = $('#importText').value.trim();
-    if (!txt) return toast('  ', 'error');
+    if (!txt) return toast('الصق النص أولاً', 'error');
     processImportedData(txt);
   });
 }
@@ -2171,7 +2171,7 @@ function importData(file) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = evt => processImportedData(evt.target.result);
-  reader.onerror = () => toast('  ', 'error');
+  reader.onerror = () => toast('فشل قراءة الملف', 'error');
   reader.readAsText(file);
 }
 
@@ -2179,7 +2179,7 @@ function processImportedData(rawText) {
   try {
     let imported = JSON.parse(String(rawText).trim());
     if (!imported.people || !Array.isArray(imported.transactions))
-      return toast('   �    ', 'error');
+      return toast('بيانات غير صالحة — تأكد أنها نسخة دفترنا', 'error');
     if (imported.debts && imported.debts.length && imported.debts[0].type !== undefined && imported.debts[0].entries === undefined) {
       imported = migrateV1toV2(imported);
     }
@@ -2195,37 +2195,37 @@ function processImportedData(rawText) {
       settings: Object.assign({ theme: null, currency: CONFIG.currencyDefault, profitPersonId: 1 }, imported.settings || {})
     };
     if (!safeState.categories) safeState.categories = { expense: CONFIG.expenseCategories.map(c=>({...c})), income: CONFIG.incomeCategories.map(c=>({...c})) };
-    confirmDialog(`     <b>${fmtNumber(safeState.transactions.length)} </b>.   `, () => {
+    confirmDialog(`سيتم استبدال البيانات الحالية بـ <b>${fmtNumber(safeState.transactions.length)} معاملة</b>. هل تريد المتابعة؟`, () => {
       state = safeState; DB.data = state; DB.save();
       normalizeDebts(); DB.save();
-      Modal.close(); toast('    ');
+      Modal.close(); toast('تم استيراد البيانات بنجاح ✔');
       Recurring.generate(); renderCurrent();
     });
   } catch (e) {
-    toast('    ', 'error');
+    toast('النص تالف أو غير كامل', 'error');
   }
 }
 
 function saveInternalSnapshot() {
   try {
     localStorage.setItem(CONFIG.storageKey + ':snapshot', JSON.stringify({ ts: Date.now(), data: state }));
-    toast('    ');
-  } catch (e) { toast('  ', 'error'); }
+    toast('حُفظت نسخة داخلية آمنة ✔');
+  } catch (e) { toast('تعذّر الحفظ الداخلي', 'error'); }
 }
 
 function restoreInternalSnapshot() {
   try {
     const raw = localStorage.getItem(CONFIG.storageKey + ':snapshot');
-    if (!raw) return toast('     ', 'info');
+    if (!raw) return toast('لا توجد نسخة داخلية محفوظة بعد', 'info');
     const snap = JSON.parse(raw);
     const when = toLatin(new Intl.DateTimeFormat('ar', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(snap.ts)));
-    confirmDialog(`     <b>${when}</b>   .`, () => {
+    confirmDialog(`ستُستعاد النسخة الداخلية المحفوظة بتاريخ <b>${when}</b> وتُستبدل البيانات الحالية.`, () => {
       state = snap.data; DB.data = state; DB.save();
       normalizeDebts(); DB.save();
-      Modal.close(); toast('   ');
+      Modal.close(); toast('تمت الاستعادة بنجاح ✔');
       Recurring.generate(); renderCurrent();
     });
-  } catch (e) { toast('  ', 'error'); }
+  } catch (e) { toast('النسخة الداخلية تالفة', 'error'); }
 }
 
 function getProfitPid() {
@@ -2235,33 +2235,33 @@ function getProfitPid() {
 
 function openSettings() {
   const profitPid = getProfitPid();
-  Modal.open(`<div class="modal-head"><h3></h3>
-    <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+  Modal.open(`<div class="modal-head"><h3>الإعدادات</h3>
+    <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
     <form id="setForm" class="form-stack">
       <div class="field-row">
-        <div class="field"><label>  </label><input id="setName1" value="${escapeHtml(state.people[0].name)}" maxlength="15"></div>
-        <div class="field"><label>  </label><input id="setName2" value="${escapeHtml(state.people[1].name)}" maxlength="15"></div>
+        <div class="field"><label>اسم الفرد الأول</label><input id="setName1" value="${escapeHtml(state.people[0].name)}" maxlength="15"></div>
+        <div class="field"><label>اسم الفرد الثاني</label><input id="setName2" value="${escapeHtml(state.people[1].name)}" maxlength="15"></div>
       </div>
       <div class="field-row">
-        <div class="field"><label> </label><input id="setCurrency" value="${escapeHtml(state.settings.currency)}" maxlength="6"></div>
-        <div class="field"><label> 20%  </label>
+        <div class="field"><label>رمز العملة</label><input id="setCurrency" value="${escapeHtml(state.settings.currency)}" maxlength="6"></div>
+        <div class="field"><label>الربح 20% يُحسب من</label>
           <select id="setProfitPerson">
-            <option value="${state.people[0].id}" ${profitPid === state.people[0].id ? 'selected' : ''}>    � ${escapeHtml(state.people[0].name)}</option>
-            <option value="${state.people[1].id}" ${profitPid === state.people[1].id ? 'selected' : ''}>    � ${escapeHtml(state.people[1].name)}</option>
-            <option value="0" ${profitPid === 0 ? 'selected' : ''}> �     ( )</option>
+            <option value="${state.people[0].id}" ${profitPid === state.people[0].id ? 'selected' : ''}>الربح من الفرد الأول — ${escapeHtml(state.people[0].name)}</option>
+            <option value="${state.people[1].id}" ${profitPid === state.people[1].id ? 'selected' : ''}>الربح من الفرد الثاني — ${escapeHtml(state.people[1].name)}</option>
+            <option value="0" ${profitPid === 0 ? 'selected' : ''}>بدون — لا الأول ولا الثاني (كلاهما كامل)</option>
           </select></div>
       </div>
-      <p class="hint" style="margin:-6px 0 0">       20%     .  ��   .</p>
+      <p class="hint" style="margin:-6px 0 0">عند اختيار فرد، يُحسب في الهدف التلقائي 20% من صافيه فقط والشريك كامل. عند «بدون» يُحسب كلاهما كاملًا.</p>
       <div class="field">
-        <label>  �    </label>
+        <label>النسخ الاحتياطي — يعمل كله داخل التطبيق</label>
         <div class="backup-actions">
-          <button type="button" class="btn btn-ghost" id="exportBtn"><svg class="ic"><use href="#i-up"/></svg>  ( )</button>
-          <button type="button" class="btn btn-ghost" id="importBtn"><svg class="ic"><use href="#i-down"/></svg>  ( )</button>
-          <button type="button" class="btn btn-ghost" id="snapBtn"><svg class="ic"><use href="#i-save"/></svg>   </button>
-          <button type="button" class="btn btn-ghost" id="restoreBtn"><svg class="ic"><use href="#i-restore"/></svg>   </button>
+          <button type="button" class="btn btn-ghost" id="exportBtn"><svg class="ic"><use href="#i-up"/></svg> تصدير (نسخ نص)</button>
+          <button type="button" class="btn btn-ghost" id="importBtn"><svg class="ic"><use href="#i-down"/></svg> استيراد (لصق نص)</button>
+          <button type="button" class="btn btn-ghost" id="snapBtn"><svg class="ic"><use href="#i-save"/></svg> حفظ نسخة داخلية</button>
+          <button type="button" class="btn btn-ghost" id="restoreBtn"><svg class="ic"><use href="#i-restore"/></svg> استعادة نسخة داخلية</button>
         </div>
       </div>
-      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg>  </button></div>
+      <div class="form-actions"><button class="btn btn-primary" type="submit"><svg class="ic"><use href="#i-check"/></svg> حفظ الإعدادات</button></div>
     </form>`);
   $('#exportBtn').addEventListener('click', openExportModal);
   $('#importBtn').addEventListener('click', openImportPicker);
@@ -2274,7 +2274,7 @@ function openSettings() {
     state.settings.currency = $('#setCurrency').value.trim() || CONFIG.currencyDefault;
     const v = Number($('#setProfitPerson').value);
     state.settings.profitPersonId = Number.isFinite(v) ? v : 1;
-    DB.save(); Modal.close(); toast('   ');
+    DB.save(); Modal.close(); toast('تم حفظ الإعدادات ✔');
     renderCurrent();
   });
 }
@@ -2286,8 +2286,8 @@ function seedDemo() {
   const keys = Stats.lastMonthKeys(CONFIG.monthsWindow);
   const today = todayISO();
   state.sources = [
-    { id: uid(), label: ' ', personId: 1, type: 'income', category: 'salary', amount: 5200, days: [1], active: true },
-    { id: uid(), label: ' ', personId: 1, type: 'expense', category: 'housing', amount: 1800, days: [1], active: true }
+    { id: uid(), label: 'راتب أحمد', personId: 1, type: 'income', category: 'salary', amount: 5200, days: [1], active: true },
+    { id: uid(), label: 'إيجار الشقة', personId: 1, type: 'expense', category: 'housing', amount: 1800, days: [1], active: true }
   ];
   const push = (pid, type, cat, amount, key, day, note = '') => {
     const dim = daysInMonthOf(key), iso = `${key}-${pad(Math.min(day, dim))}`;
@@ -2295,37 +2295,37 @@ function seedDemo() {
     state.transactions.push({ id: uid(), personId: pid, type, category: cat, amount: Math.round(amount), note, date: iso, time: nowTime(), ts: Date.now() });
   };
   keys.forEach((k, i) => {
-    push(2, 'income', 'salary', 4700, k, 25, ' ');
-    push(1, 'income', 'freelance', 900 + rnd() * 1600, k, 10 + Math.floor(rnd() * 8), ' ');
-    if (i === 1 || i === 3) push(2, 'income', 'gift', 250 + rnd() * 450, k, 14, '');
-    if (i === 2) push(1, 'income', 'invest', 420, k, 20, ' ');
+    push(2, 'income', 'salary', 4700, k, 25, 'راتب سارة');
+    push(1, 'income', 'freelance', 900 + rnd() * 1600, k, 10 + Math.floor(rnd() * 8), 'مشروع حر');
+    if (i === 1 || i === 3) push(2, 'income', 'gift', 250 + rnd() * 450, k, 14, 'هدية');
+    if (i === 2) push(1, 'income', 'invest', 420, k, 20, 'أرباح استثمار');
     const spend = [
-      [2,'food',95,5,' '],[1,'food',62,9,'  '],[2,'food',118,17,''],[1,'food',46,22,' '],
-      [1,'transport',88,6,''],[2,'transport',52,15,' '],
-      [2,'bills',214,7,' '],[1,'bills',139,8,' '],
-      [2,'health',68,12,''],[1,'fun',92,19,' '],[2,'fun',57,26,''],
-      [1,'shopping',149,21,''],[2,'shopping',81,24,' '],[1,'education',75,13,' ']
+      [2,'food',95,5,'بقالة الأسبوع'],[1,'food',62,9,'عشاء خارج البيت'],[2,'food',118,17,'بقالة'],[1,'food',46,22,'قهوة وحلويات'],
+      [1,'transport',88,6,'وقود'],[2,'transport',52,15,'تطبيقات توصيل'],
+      [2,'bills',214,7,'كهرباء وماء'],[1,'bills',139,8,'إنترنت وجوال'],
+      [2,'health',68,12,'صيدلية'],[1,'fun',92,19,'سينما وعشاء'],[2,'fun',57,26,'اشتراكات'],
+      [1,'shopping',149,21,'ملابس'],[2,'shopping',81,24,'مستلزمات المنزل'],[1,'education',75,13,'دورة تدريبية']
     ];
     spend.forEach(([pid, cat, base, day, note]) => {
       if (rnd() > (cat === 'education' || cat === 'health' ? 0.55 : 0.12)) push(pid, 'expense', cat, base * (0.75 + rnd() * 0.6), k, day, note);
     });
   });
   const due = new Date(); due.setMonth(due.getMonth() + 5); due.setDate(15);
-  state.goals = [{ id: uid(), name: '  ', targetAmount: 6000, dueDate: toISO(due), initialSaved: 500, auto: false, autoStart: '',
+  state.goals = [{ id: uid(), name: 'شراء لابتوب جديد', targetAmount: 6000, dueDate: toISO(due), initialSaved: 500, auto: false, autoStart: '',
     contributions: [ { id: uid(), amount: 300, date: keys[4] + '-05', personId: 1 }, { id: uid(), amount: 350, date: keys[5] + '-05', personId: 2 } ],
     createdAt: keys[3] + '-01' }];
   state.debts = [
-    { id: uid(), name: '', createdAt: todayISO(), updatedAt: Date.now(), entries: [
-      { id: uid(), kind: 'to_us', amount: 500000, date: todayISO(), time: nowTime(), note: ' ' },
-      { id: uid(), kind: 'we_owe', amount: 100000, date: todayISO(), time: nowTime(), note: ' ' }
+    { id: uid(), name: 'خميس', createdAt: todayISO(), updatedAt: Date.now(), entries: [
+      { id: uid(), kind: 'to_us', amount: 500000, date: todayISO(), time: nowTime(), note: 'دين له' },
+      { id: uid(), kind: 'we_owe', amount: 100000, date: todayISO(), time: nowTime(), note: 'دين عليه' }
     ]},
-    { id: uid(), name: ' ', createdAt: todayISO(), entries: [
-      { id: uid(), kind: 'to_us', amount: 100000, date: todayISO(), time: nowTime(), note: ' ' },
-      { id: uid(), kind: 'we_owe', amount: 20000, date: todayISO(), time: nowTime(), note: '' }
+    { id: uid(), name: 'أبو خالد', createdAt: todayISO(), entries: [
+      { id: uid(), kind: 'to_us', amount: 100000, date: todayISO(), time: nowTime(), note: 'دين أصلي' },
+      { id: uid(), kind: 'we_owe', amount: 20000, date: todayISO(), time: nowTime(), note: 'سداد' }
     ]}
   ];
   Recurring.generate(); DB.save();
-  toast('    ', 'info');
+  toast('تمت تعبئة بيانات تجريبية ✨', 'info');
   renderCurrent();
 }
 
@@ -2350,7 +2350,7 @@ function handleAction(action, ds) {
       const b = getBudget();
       b.locked = !b.locked; DB.save();
       renderBudget();
-      toast(b.locked ? '   ' : '    ');
+      toast(b.locked ? 'تم قفل النسب 🔒' : 'تم فتح النسب للتعديل 🔓');
       break;
     }
     case 'add-budget-tx': openBudgetTxModal(null); break;
@@ -2363,9 +2363,9 @@ function handleAction(action, ds) {
       const b = getBudget();
       const t = (b.tx || []).find(x => x.id === id); if (!t) return;
       const c = BUDGET_CATS.find(x => x.key === t.cat) || BUDGET_CATS[0];
-      confirmDialog(`   �${c.label} � ${fmtMoney(t.amount)}�    .`, () => {
+      confirmDialog(`سيتم حذف صرف «${c.label} — ${fmtMoney(t.amount)}» ويتحدث السجل والميزانية فورًا.`, () => {
         b.tx = b.tx.filter(x => x.id !== id);
-        DB.save(); toast('     ');
+        DB.save(); toast('تم حذف الصرف وتحديث الميزانية ✔');
         renderBudget();
       });
       break;
@@ -2373,29 +2373,29 @@ function handleAction(action, ds) {
     case 'budget-filter': budgetFilter = id; renderBudgetTxList(); break;
     case 'budget-reset': {
       state.budget = { ...state.budget, save: 60, expense: 20, fun: 20 };
-      DB.save(); renderBudget(); toast('    60/20/20 ');
+      DB.save(); renderBudget(); toast('تمت إعادة النسب إلى 60/20/20 ✔');
       break;
     }
     case 'edit-tx': openTxEditor(Repo.find('transactions', id)); break;
     case 'del-tx': {
       const tx = Repo.find('transactions', id); if (!tx) return;
-      if (tx.sourceId) return toast('    �     ', 'error');
-      confirmDialog(`   �${categoryById(tx.type, tx.category).label} � ${fmtMoney(tx.amount)}� .`, () => {
-        Repo.remove('transactions', id); toast('  '); renderCurrent();
+      if (tx.sourceId) return toast('هذه معاملة مولّدة تلقائيًا — عدّل المصدر الثابت بدلًا منها', 'error');
+      confirmDialog(`سيتم حذف معاملة «${categoryById(tx.type, tx.category).label} — ${fmtMoney(tx.amount)}» نهائيًا.`, () => {
+        Repo.remove('transactions', id); toast('تم حذف المعاملة'); renderCurrent();
       }); break;
     }
     case 'transfer-tx': {
       const tx = Repo.find('transactions', id); if (!tx) return;
       const other = state.people.find(p => p.id !== tx.personId); if (!other) return;
       tx.personId = other.id; DB.save(); Modal.close();
-      toast(`   ${escapeHtml(other.name)} `);
+      toast(`تم النقل إلى ${escapeHtml(other.name)} ✔`);
       renderCurrent();
       break;
     }
     case 'duplicate-tx': {
       const tx = Repo.find('transactions', id); if (!tx) return;
       Repo.insert('transactions', { id: uid(), personId: tx.personId, type: tx.type, category: tx.category, amount: tx.amount, note: tx.note || '', date: todayISO(), time: nowTime(), ts: Date.now() });
-      Modal.close(); toast('     ');
+      Modal.close(); toast('تم تكرار المعاملة بتاريخ اليوم ✔');
       renderCurrent();
       break;
     }
@@ -2403,16 +2403,16 @@ function handleAction(action, ds) {
       Modal.close();
       selectMode = true; selectedTx.clear();
       renderRecent();
-      toast('    � �', 'info');
+      toast('حدّد الحركات ثم اضغط «حذف المحدد»', 'info');
       break;
     }
     case 'delete-selected': {
-      if (!selectedTx.size) return toast('   ', 'error');
+      if (!selectedTx.size) return toast('لم تحدد أي حركة', 'error');
       const n = selectedTx.size;
-      confirmDialog(`  ${fmtNumber(n)}  .`, () => {
+      confirmDialog(`سيتم حذف ${fmtNumber(n)} حركة نهائيًا.`, () => {
         state.transactions = state.transactions.filter(t => !selectedTx.has(t.id));
         DB.save(); selectedTx.clear(); selectMode = false;
-        toast('   '); renderHome();
+        toast('تم حذف المحدد ✔'); renderHome();
       });
       break;
     }
@@ -2425,13 +2425,13 @@ function handleAction(action, ds) {
     }
     case 'add-cat': {
       const type = id;
-      const icon = (($('#ncIcon') ? $('#ncIcon').value : '') || '').trim() || '';
+      const icon = (($('#ncIcon') ? $('#ncIcon').value : '') || '').trim() || '🏷️';
       const label = (($('#ncLabel') ? $('#ncLabel').value : '') || '').trim();
-      if (!label) return toast('  ', 'error');
+      if (!label) return toast('أدخل اسم الفئة', 'error');
       if (!state.categories) state.categories = { expense: CONFIG.expenseCategories.map(c=>({...c})), income: CONFIG.incomeCategories.map(c=>({...c})) };
       if (!state.categories[type]) state.categories[type] = [];
       state.categories[type].push({ id: 'c' + uid(), label, icon, color: '#93a09b' });
-      DB.save(); toast('   ');
+      DB.save(); toast('تمت إضافة الفئة ✔');
       openCategoryManager(type, catRefreshCb); if (catRefreshCb) catRefreshCb();
       break;
     }
@@ -2442,15 +2442,15 @@ function handleAction(action, ds) {
       const c = state.categories[type].find(x => x.id === cid); if (!c) return;
       c.label = (($('#ecLabel') ? $('#ecLabel').value : '') || '').trim() || c.label;
       c.icon = (($('#ecIcon') ? $('#ecIcon').value : '') || '').trim() || c.icon;
-      DB.save(); toast('   ');
+      DB.save(); toast('تم تحديث الفئة ✔');
       openCategoryManager(type, catRefreshCb); if (catRefreshCb) catRefreshCb();
       break;
     }
     case 'del-cat': {
       const type = ds.type, cid = ds.id;
-      confirmDialog('  .     ��.', () => {
+      confirmDialog('سيتم حذف الفئة. المعاملات القديمة ستظهر تحت «أخرى».', () => {
         state.categories[type] = (state.categories[type] || []).filter(c => c.id !== cid);
-        DB.save(); toast('   ');
+        DB.save(); toast('تم حذف الفئة ✔');
         openCategoryManager(type, catRefreshCb); if (catRefreshCb) catRefreshCb();
       });
       break;
@@ -2463,10 +2463,10 @@ function handleAction(action, ds) {
     case 'rename-person': { const p = Repo.find('debts', id); if (p) openRenamePersonModal(p); break; }
     case 'delete-person': {
       const p = Repo.find('debts', id); if (!p) return;
-      confirmDialog(`  �${escapeHtml(p.name)}�   .`, () => {
+      confirmDialog(`سيتم حذف «${escapeHtml(p.name)}» وكل سجل حركاته.`, () => {
         Repo.remove('debts', id);
         selectedPersonId = null;
-        toast('   '); renderDebts();
+        toast('تم حذف الشخص ✔'); renderDebts();
       }); break;
     }
     case 'add-debt-entry': {
@@ -2483,22 +2483,22 @@ function handleAction(action, ds) {
       const [pid, eid] = id.split('|');
       const p = Repo.find('debts', pid); if (!p) return;
       const entry = (p.entries || []).find(x => x.id === eid); if (!entry) return;
-      const k = DEBT_KINDS[entry.kind] || { label:'' };
-      confirmDialog(`    (${k.label} � ${fmtMoney(entry.amount)}) .`, () => {
+      const k = DEBT_KINDS[entry.kind] || { label:'حركة' };
+      confirmDialog(`سيتم حذف هذه الحركة (${k.label} — ${fmtMoney(entry.amount)}) فقط.`, () => {
         p.entries = (p.entries || []).filter(x => x.id !== eid);
         p.updatedAt = Date.now();
-        DB.save(); toast('   '); renderDebts();
+        DB.save(); toast('تم حذف الحركة ✔'); renderDebts();
       }); break;
     }
     case 'view-img': {
       const [pid, eid] = id.split('|');
       const p = Repo.find('debts', pid); if (!p) return;
       const entry = (p.entries || []).find(x => x.id === eid); if (!entry || !entry.img) return;
-      Modal.open(`<div class="modal-head"><h3>   / </h3>
-        <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
-        <img src="${entry.img}" style="width:100%;border-radius:12px;border:1px solid var(--line)" alt="">
+      Modal.open(`<div class="modal-head"><h3>📷 صورة الإشعار / الفاتورة</h3>
+        <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
+        <img src="${entry.img}" style="width:100%;border-radius:12px;border:1px solid var(--line)" alt="صورة">
         <div class="form-actions" style="justify-content:center;margin-top:12px">
-          <a class="btn btn-ghost" href="${entry.img}" download="daftarna-${eid}.jpg"><svg class="ic"><use href="#i-down"/></svg>  </a>
+          <a class="btn btn-ghost" href="${entry.img}" download="daftarna-${eid}.jpg"><svg class="ic"><use href="#i-down"/></svg> تنزيل الصورة</a>
         </div>`);
       break;
     }
@@ -2506,39 +2506,39 @@ function handleAction(action, ds) {
     case 'edit-source': openSourceEditor(Repo.find('sources', id)); break;
     case 'del-source': {
       const s = Repo.find('sources', id); if (!s) return;
-      confirmDialog(`   �${escapeHtml(s.label)}�   .`, () => {
+      confirmDialog(`سيتم حذف مصدر «${escapeHtml(s.label)}» وجميع معاملاته المولّدة.`, () => {
         Repo.remove('sources', id);
         state.transactions = state.transactions.filter(t => t.sourceId !== id); DB.save();
-        toast('   '); renderRecurring(); renderHome();
+        toast('تم حذف المصدر ومعاملاته'); renderRecurring(); renderHome();
       }); break;
     }
     case 'new-goal': openGoalEditor(null); break;
     case 'edit-goal': openGoalEditor(Repo.find('goals', id)); break;
     case 'del-goal': {
       const g = Repo.find('goals', id); if (!g) return;
-      confirmDialog(`   �${escapeHtml(g.name)}�  .`, () => {
-        Repo.remove('goals', id); toast('  '); renderGoals();
+      confirmDialog(`سيتم حذف هدف «${escapeHtml(g.name)}» وكل مساهماته.`, () => {
+        Repo.remove('goals', id); toast('تم حذف الهدف'); renderGoals();
       }); break;
     }
     case 'add-contrib': openContribModal(Repo.find('goals', id)); break;
     case 'edit-month-goal': {
       const mk = id;
       const start = `${mk}-01`, end = `${mk}-${pad(daysInMonthOf(mk))}`;
-      Modal.open(`<div class="modal-head"><h3>  ${monthLabel(mk)} � ${fmtNumber(mk.slice(0,4))}</h3>
-        <button class="icon-btn" data-close aria-label=""><svg class="ic"><use href="#i-close"/></svg></button></div>
+      Modal.open(`<div class="modal-head"><h3>هدف شهر ${monthLabel(mk)} — ${fmtNumber(mk.slice(0,4))}</h3>
+        <button class="icon-btn" data-close aria-label="إغلاق"><svg class="ic"><use href="#i-close"/></svg></button></div>
         <form id="mgForm" class="form-stack">
-          <p class="hint" style="margin:0 0 4px">  : <b>${fmtDate(start)}</b> �  : <b>${fmtDate(end)}</b></p>
-          <div class="field"><label>   </label>
+          <p class="hint" style="margin:0 0 4px">📅 بداية الهدف: <b>${fmtDate(start)}</b> — نهاية الهدف: <b>${fmtDate(end)}</b></p>
+          <div class="field"><label>الهدف المطلوب لهذا الشهر</label>
             <div class="amount-wrap"><input id="mgTarget" inputmode="decimal" value="${(+state.monthGoals[mk] || '')}" placeholder="0">
             <span class="currency">${escapeHtml(state.settings.currency)}</span></div></div>
-          <div class="form-actions"><button class="btn btn-gold" type="submit"><svg class="ic"><use href="#i-check"/></svg>  </button></div>
+          <div class="form-actions"><button class="btn btn-gold" type="submit"><svg class="ic"><use href="#i-check"/></svg> حفظ الهدف</button></div>
         </form>`);
       attachAmountFormat($('#mgTarget'));
       $('#mgForm').addEventListener('submit', e => {
         e.preventDefault();
         const v = parseAmount($('#mgTarget').value) || 0;
         state.monthGoals[mk] = v; DB.save();
-        Modal.close(); toast('    '); renderGoals();
+        Modal.close(); toast('تم حفظ هدف الشهر ✔'); renderGoals();
       });
       break;
     }
@@ -2588,7 +2588,7 @@ function setupBackExit() {
     }
     if (!warned) {
       warned = true;
-      toast('    ', 'info');
+      toast('اضغط مرة أخرى لتسجيل الخروج', 'info');
       setTimeout(() => {
         warned = false;
         try { history.pushState({ daftarna: 1 }, ''); } catch (e) {}
@@ -2624,9 +2624,9 @@ function wireGlobal() {
   $('#addForm').addEventListener('submit', e => {
     e.preventDefault();
     const amount = parseAmount($('#addAmount').value);
-    if (!(amount > 0)) return toast('     ', 'error');
+    if (!(amount > 0)) return toast('أدخل مبلغًا صحيحًا أكبر من صفر', 'error');
     Repo.insert('transactions', { id: uid(), personId: addState.personId, type: addState.type, amount, category: addState.category, note: $('#addNote').value.trim(), date: $('#addDate').value || todayISO(), time: nowTime(), ts: Date.now() });
-    toast(addState.type === 'income' ? '   ' : '   ');
+    toast(addState.type === 'income' ? 'تم تسجيل الدخل ✔' : 'تم تسجيل المصروف ✔');
     addState.category = getCats(addState.type)[0].id;
     $('#addAmount').value = ''; $('#addNote').value = '';
     renderHome();
